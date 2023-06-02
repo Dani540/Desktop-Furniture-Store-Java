@@ -1,0 +1,107 @@
+#allButtonsContainerVBox{
+    -fx-padding: 50 0 0 0;
+}
+
+#topContainer{
+    -fx-alignment: top-right;
+    -fx-pref-height: 44;
+    -fx-min-height: 44;
+    -fx-max-height: 44;
+    -fx-padding: 5 5 5 5;
+}
+
+#buttonsContainer {
+    -fx-alignment: top-center;
+
+    -fx-pref-width: 135;
+    -fx-min-width: 135;
+    -fx-max-width: 135;
+
+    -fx-pref-height: 100;
+    -fx-min-height: 100;
+    -fx-max-height: 100;
+
+    -fx-padding: 15 0 0 0;
+}
+
+#buttonsContainer .button{
+    -fx-pref-width: 90;
+    -fx-min-width: 90;
+    -fx-max-width: 90;
+
+    -fx-pref-height: 25;
+    -fx-min-height: 25;
+    -fx-max-height: 25;
+}
+
+
+#backContainer {
+    -fx-pref-width: 135;
+    -fx-min-width: 135;
+    -fx-max-width: 135;
+
+    -fx-pref-height: 50;
+    -fx-min-height: 50;
+    -fx-max-height: 50;
+
+    -fx-alignment: center;
+}
+
+
+
+#backButton{
+    -fx-pref-width: 90;
+    -fx-min-width: 90;
+    -fx-max-width: 90;
+
+    -fx-pref-height: 25;
+    -fx-min-height: 25;
+    -fx-max-height: 25;
+}
+
+
+#bottomContainer{
+    -fx-alignment: center;
+
+    -fx-pref-width: 202;
+    -fx-min-width: 202;
+    -fx-max-width: 202;
+
+    -fx-pref-height: 50;
+    -fx-min-height: 50;
+    -fx-max-height: 50;
+
+}
+
+#bottomContainer .button{
+    -fx-pref-width: 135;
+    -fx-min-width: 135;
+    -fx-max-width: 135;
+
+    -fx-pref-height: 25;
+    -fx-min-height: 25;
+    -fx-max-height: 25;
+}
+
+
+#scrollPaneTicket > .viewport {
+    -fx-background-color: transparent;
+}
+
+#ticketHBoxContainer {
+    -fx-background-radius: 11;
+    -fx-padding: 15 15 15 15;
+}
+
+#ticketHBoxContainer .label{
+    -fx-background-color: white;
+    -fx-text-alignment: center;
+    -fx-background-radius: 4;
+    -fx-border-radius: 4;
+    -fx-border-color: black;
+    -fx-border-width: 1;
+}
+
+#leftVBoxTicket #rightVBoxTicket{
+    -fx-spacing: 5;
+}

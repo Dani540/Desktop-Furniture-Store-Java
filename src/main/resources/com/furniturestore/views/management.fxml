@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.furniturestore.controllers.management.ManagementController">
+   <center>
+      <VBox fx:id="buttonsContainer" styleClass="vBox-container" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button onAction="#onAddTradButton" mnemonicParsing="false" text="Add Traditional Furniture" />
+            <Button onAction="#onViewAllButton" mnemonicParsing="false" text="View All Furniture" />
+            <Button onAction="#onViewTradButton" mnemonicParsing="false" text="View Traditional Furniture" />
+            <Button onAction="#onViewPerButton" mnemonicParsing="false" text="View Personalized Furniture" />
+            <Button onAction="#onResetDataButton" mnemonicParsing="false" text="Reset Data" />
+            <Button onAction="#onBackButton" mnemonicParsing="false" text="Back" />
+         </children>
+      </VBox>
+   </center>
+   <top>
+      <HBox fx:id="topContainer" styleClass="exit-button-container" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button mnemonicParsing="false" text="X" onAction="#onBackButton" />
+         </children>
+      </HBox>
+   </top>
+</BorderPane>

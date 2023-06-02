@@ -1,0 +1,55 @@
+#centerContainerHBox {
+    -fx-alignment: center;
+    -fx-spacing: 100;
+    -fx-padding: 15 0 0 0;
+}
+
+#buttonsContainerHBox {
+    -fx-alignment: center;
+    -fx-spacing: 100;
+}
+
+#exitButtonContainer {
+    -fx-alignment: top-right;
+    -fx-pref-height: 44;
+    -fx-min-height: 44;
+    -fx-max-height: 44;
+    -fx-padding: 5 5 5 5;
+}
+
+#centerContainerHBox .scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+#leftVBox, #leftCheckBoxVBox, #rightVBox{
+    -fx-alignment: top-center;
+    -fx-padding: 15 0 0 0;
+    -fx-spacing: 15;
+}
+
+#leftVBox{
+    -fx-spacing: 19;
+}
+
+#leftVBox .label{
+    /*-fx-background-color: white;
+    -fx-text-alignment: center;
+    -fx-background-radius: 4;
+    -fx-border-radius: 4;
+    -fx-border-color: black;
+    -fx-border-width: 1;*/
+    -fx-text-fill: #ffff;
+}
+
+#leftCheckBoxVBox .check-box .box {
+    -fx-background-color: transparent;
+}
+
+#rightVBox .label{
+    -fx-background-color: white;
+    -fx-text-alignment: center;
+    -fx-background-radius: 4;
+    -fx-border-radius: 4;
+    -fx-border-color: black;
+    -fx-border-width: 1;
+}

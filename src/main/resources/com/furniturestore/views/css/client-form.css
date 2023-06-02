@@ -1,0 +1,41 @@
+.vBox-container {
+    -fx-pref-width: 250;
+    -fx-max-width: 250;
+    -fx-min-width: 250;
+
+    -fx-pref-height: 225;
+    -fx-max-height: 225;
+    -fx-min-height: 225;
+
+}
+
+#allButtonsContainerVBox{
+
+    -fx-pref-width: 250;
+    -fx-max-width: 250;
+    -fx-min-width: 250;
+
+    -fx-pref-height: 205;
+    -fx-max-height: 205;
+    -fx-min-height: 205;
+
+    -fx-alignment: center;
+    -fx-text-alignment: center;
+
+    -fx-spacing: 15;
+}
+
+#buttonsContainerHBox {
+
+    -fx-pref-width: 250;
+    -fx-max-width: 250;
+    -fx-min-width: 250;
+
+    -fx-pref-height: 50;
+    -fx-max-height: 50;
+    -fx-min-height: 50;
+
+    -fx-alignment: center;
+
+    -fx-spacing: 15;
+}

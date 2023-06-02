@@ -1,0 +1,15 @@
+#buttonsContainer {
+    -fx-pref-width: 200;
+    -fx-min-width: 200;
+    -fx-max-width: 200;
+
+    -fx-pref-height: 250;
+    -fx-max-height: 250;
+    -fx-min-height: 250;
+}
+
+#buttonsContainer .button {
+    -fx-pref-width: 197;
+    -fx-min-width: 197;
+    -fx-max-width: 197;
+}

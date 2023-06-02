@@ -1,0 +1,108 @@
+/*
+    root background:   #C0F6F2
+    button background: #607B79
+    button text:       #0F1313
+    texfield promp:    #181F1E
+    textfield text:    #0F1313
+    vbox container:    #789A97
+    label incomplete:  #5e1515
+ */
+
+. root{
+    -fx-background-color: #151515;
+    -fx-font-family: "Roboto";
+    -fx-background-radius: 11;
+    -fx-border-radius: 11;
+    -fx-border-color: black;
+
+}
+
+.button{
+    -fx-background-color: #282828FF;
+    -fx-background-radius: 0;
+    /*
+    -fx-background-color: #3b3b3b;
+    -fx-background-radius: 11px;
+    -fx-border-width: 1px;
+    -fx-border-color: black;
+    -fx-border-radius: 11px;
+     */
+    -fx-font-family: "Lato";
+    -fx-font-size: 12px;
+    -fx-text-fill: #CBCBCBFF;
+}
+
+.vbox-shadow {
+    -fx-effect: dropshadow( gaussian, rgba(0, 0, 0, 0.58), 8, 0.4, 0, 4);
+}
+
+.vBox-container{
+    -fx-background-color: #282828FF;
+    -fx-background-radius: 11;
+    -fx-border-radius: 11;
+    -fx-border-width: 1;
+    -fx-border-color: black;
+
+    -fx-spacing: 15;
+    -fx-alignment: center;
+
+    -fx-effect: dropshadow( gaussian, rgba(0, 0, 0, 0.58), 8, 0.4, 0, 4);
+    -fx-text-alignment: center;
+}
+
+.text-field, .text-area{
+    -fx-pref-width: 180;
+    -fx-max-width: 180;
+    -fx-min-width: 180;
+
+    -fx-background-color: #383838;
+    -fx-background-radius: 11;
+    -fx-border-radius: 11;
+    -fx-border-color: black;
+
+    -fx-prompt-text-fill: #7c7c7c;
+
+    -fx-text-alignment: center;
+    -fx-alignment: center;
+
+    -fx-font-size: 12;
+    -fx-font-family: "Late";
+    -fx-text-fill: #cbcbcb;
+
+    -fx-control-inner-background: #383838;
+    -fx-background-insets: 0;
+}
+
+.exit-button-container {
+    -fx-pref-height: 30;
+    -fx-min-height: 30;
+    -fx-max-height: 30;
+
+    -fx-alignment: top-right;
+
+    -fx-padding: 5 5 5 5;
+}
+
+.exit-button-container .button{
+    -fx-alignment: center-right;
+}
+
+.check-box {
+    -fx-background-color: #545454;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-border-width: 1;
+    -fx-border-color: black;
+}
+
+.scroll-pane .scroll-bar:vertical{
+    -fx-background-color: transparent;
+}
+
+.label{
+    -fx-font-family: "Lato";
+}
+
+#incompleteDataLabel {
+    -fx-text-fill: #ff3030;
+}

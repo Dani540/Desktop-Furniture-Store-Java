@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.furniturestore.controllers.sale.NewSaleController">
+   <center>
+      <HBox fx:id="centerContainer" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="220.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox fx:id="allButtonsContainerVBox"  prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <VBox fx:id="buttonsContainer" styleClass="vBox-container">
+                     <Button fx:id="traditionalSaleButton" onAction="#traditionalSaleButton" mnemonicParsing="false" text="Traditional" />
+                     <Button fx:id="personalizedSaleButton" onAction="#personalizedSaleButton" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" text="Personalized" />
+                  </VBox>
+                  <VBox fx:id="backContainer" styleClass="vBox-container" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Button fx:id="backButton" mnemonicParsing="false" onAction="#onBackButton" text="Back" />
+                     </children>
+                     <VBox.margin>
+                        <Insets top="95.0"/>
+                     </VBox.margin>
+                  </VBox>
+               </children></VBox>
+            <ScrollPane fx:id="scrollPaneTicket" styleClass="vBox-container" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0">
+               <content>
+                  <HBox fx:id="ticketHBoxContainer" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <VBox fx:id="leftVBoxTicket" prefHeight="200.0" prefWidth="100.0" />
+                        <VBox fx:id="rightVBoxTicket" prefHeight="200.0" prefWidth="100.0" />
+                     </children>
+                  </HBox>
+               </content>
+            </ScrollPane>
+         </children>
+      </HBox>
+   </center>
+   <bottom>
+      <HBox fx:id="bottomContainer" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER_RIGHT">
+         <children>
+            <Button fx:id="payButton" onAction="#onPayButton" mnemonicParsing="false" text="Pay">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin></Button>
+         </children>
+         <BorderPane.margin>
+            <Insets right="20.0" bottom="20" />
+         </BorderPane.margin>
+      </HBox>
+   </bottom>
+   <top>
+      <HBox fx:id="topContainer" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="exitButton" alignment="TOP_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#exitButton" text="X" />
+         </children>
+      </HBox>
+   </top>
+</BorderPane>

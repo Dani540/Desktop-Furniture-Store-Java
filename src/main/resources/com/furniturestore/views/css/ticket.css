@@ -1,0 +1,144 @@
+.vBox-container{
+    -fx-pref-width: 210;
+    -fx-min-width: 210;
+    -fx-max-width: 210;
+
+    -fx-pref-height: 340;
+    -fx-max-height: 340;
+    -fx-min-height: 340;
+
+    -fx-padding: 10 0 0 0;
+
+    -fx-alignment: top-center;
+}
+
+#ticketVBox{
+    -fx-pref-width: 160;
+    -fx-min-width: 160;
+    -fx-max-width: 160;
+
+    -fx-padding: 10 10 10 10;
+
+    -fx-alignment: top-center;
+    -fx-text-alignment: center;
+
+    -fx-font-family: "Times New Roman";
+}
+
+#buttonsContainerHBox{
+    -fx-pref-width: 160;
+    -fx-min-width: 160;
+    -fx-max-width: 160;
+
+    -fx-pref-height: 30;
+    -fx-min-height: 30;
+    -fx-max-height: 30;
+
+    -fx-spacing: 20;
+
+    -fx-alignment: center;
+}
+
+#ticketVBox{
+    -fx-background-color: white;
+
+    -fx-pref-height: 275;
+    -fx-max-height: 275;
+    -fx-min-height: 275;
+
+    -fx-text-alignment: center;
+}
+
+#rutContainer{
+    -fx-font-size: 14;
+    -fx-text-alignment: center;
+    -fx-alignment: center;
+    -fx-border-width: 1;
+    -fx-border-color: black;
+
+    -fx-pref-height: 35;
+    -fx-max-height: 35;
+    -fx-min-height: 35;
+    -fx-spacing: 15;
+}
+
+#ticketElectronicHBox{
+    -fx-alignment: center;
+
+    -fx-pref-height: 25;
+    -fx-max-height: 25;
+    -fx-min-height: 25;
+}
+
+#ticketDateContainerVBox{
+    -fx-alignment: center;
+
+    -fx-pref-height: 30;
+    -fx-max-height: 30;
+    -fx-min-height: 30;
+}
+
+#ticketDirectionContainerVBox{
+    -fx-pref-height: 35;
+    -fx-max-height: 35;
+    -fx-min-height: 35;
+}
+
+#ticketDataContainerHBox{
+    -fx-pref-height: 20;
+    -fx-max-height: 20;
+    -fx-min-height: 20;
+}
+
+#ticketDataContainerScroll{
+    -fx-hbar-policy: never;
+    -fx-vbar-policy: never;
+    -fx-background-color: transparent;
+}
+
+#ticketDataContainerScroll .scroll-bar:vertical{
+    -fx-background-color: transparent;
+}
+
+#ticketDataQualitiesContainerHBox{
+    -fx-spacing: 6;
+}
+
+#ticketDataIdVBox{
+    -fx-pref-width: 15;
+    -fx-max-width: 15;
+    -fx-min-width: 15;
+
+    -fx-alignment: top-center;
+}
+
+#ticketDataNameVBox, #ticketDataTypeVBox, #ticketDataPriceVBox{
+    -fx-pref-width: 35;
+    -fx-max-width: 35;
+    -fx-min-width: 35;
+
+    -fx-alignment: top-center;
+}
+
+#ticketClientContainerHBox{
+    -fx-alignment: center;
+
+    -fx-pref-height: 30;
+    -fx-max-height: 30;
+    -fx-min-height: 30;
+
+}
+
+#ticketClientContainerVboxLeft,
+#ticketClientContainerVboxRight
+{
+    -fx-alignment: center;
+
+    -fx-pref-height: 30;
+    -fx-max-height: 30;
+    -fx-min-height: 30;
+
+    -fx-font-size: 9;
+}
+
+

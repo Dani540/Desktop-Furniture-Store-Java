@@ -1,0 +1,71 @@
+#titleLabel{
+    -fx-pref-height: 58;
+    -fx-max-height: 58;
+    -fx-min-height: 58;
+
+    -fx-pref-width: 335;
+    -fx-max-width: 335;
+    -fx-min-width: 335;
+
+    -fx-background-color: #282828FF;
+    -fx-background-radius: 11;
+    -fx-border-color: black;
+    -fx-border-width: 1;
+    -fx-border-radius: 11;
+
+    -fx-text-alignment: center;
+    -fx-alignment: center;
+    -fx-text-fill: #cbcbcb;
+    -fx-font-family: Copse;
+    -fx-font-size: 34;
+}
+
+#loginContainer {
+    -fx-pref-width: 200;
+    -fx-max-width: 200;
+    -fx-min-width: 200;
+
+    -fx-pref-height: 210;
+    -fx-max-height: 210;
+    -fx-min-height: 210;
+
+}
+
+#usernameTextField,
+#passwordTextField,
+#passwordPasswordField
+{
+    -fx-pref-width: 150;
+    -fx-max-width: 150;
+    -fx-min-width: 150;
+    -fx-background-color: transparent;
+    -fx-border-radius: 0;
+    -fx-border-style: hidden hidden solid hidden;
+    -fx-border-width: 0 0 1 0;
+}
+
+#passwordContainer {
+    -fx-pref-height: 20;
+    -fx-max-height: 20;
+    -fx-min-height: 20;
+
+    -fx-pref-width: 150;
+    -fx-max-width: 150;
+    -fx-min-width: 150;
+
+    -fx-alignment: center-right;
+}
+
+#showPassButton {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+#loginButton{
+    -fx-pref-width: 75px;
+    -fx-min-width: 75px;
+    -fx-max-width: 75px;
+}
+
+
+

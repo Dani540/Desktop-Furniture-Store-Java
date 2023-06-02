@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.furniturestore.controllers.store.DefaultController">
+   <top>
+      <HBox alignment="TOP_RIGHT">
+         <children>
+            <Button contentDisplay="RIGHT" layoutX="311.0" layoutY="68.0" mnemonicParsing="false" onAction="#onBackButton" text="X" />
+         </children>
+         <padding>
+            <Insets right="5.0" top="5.0" />
+         </padding>
+      </HBox>
+   </top>
+   <center>
+      <VBox alignment="CENTER">
+         <Label text="DEFAULT" />
+      </VBox>
+   </center>
+</BorderPane>

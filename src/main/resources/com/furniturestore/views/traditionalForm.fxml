@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.furniturestore.controllers.management.TraditionalFormController">
+   <center>
+      <VBox fx:id="allContainerVBox" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox fx:id="formContainer" styleClass="vBox-container" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label />
+                  <TextField fx:id="nameTextField" promptText="Furniture Name" />
+                  <TextArea fx:id="descriptionTextArea" promptText="Furniture Description" prefHeight="200.0" prefWidth="200.0" />
+                  <TextField fx:id="weightTextField" promptText="Furniture Weight" />
+                  <TextField fx:id="priceTextField" promptText="Furniture Price" />
+                  <Label />
+               </children></VBox>
+            <Label fx:id="incompleteDataLabel" />
+            <HBox fx:id="buttonsContainerHBox" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="onAddButton" mnemonicParsing="false" onAction="#onAddButton" text="Add" />
+                  <Button fx:id="onBackButton" mnemonicParsing="false" onAction="#onBackButton" text="Back" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+   <top>
+      <Button fx:id="onExitButton" onAction="#onExitButton" mnemonicParsing="false" text="X" BorderPane.alignment="TOP_RIGHT">
+         <BorderPane.margin>
+            <Insets right="5" top="5" />
+         </BorderPane.margin>
+      </Button>
+   </top>
+</BorderPane>

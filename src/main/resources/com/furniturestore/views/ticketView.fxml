@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.furniturestore.controllers.sale.TicketViewController">
+
+   <top>
+      <HBox styleClass="exit-button-container">
+         <Button fx:id="exitButton" onAction="#onExitButton" text="X" />
+      </HBox>
+   </top>
+
+   <center>
+      <VBox fx:id="allContainer" prefHeight="200.0" prefWidth="419.0" styleClass="vBox-container" BorderPane.alignment="TOP_CENTER">
+         <children>
+            <VBox fx:id="ticketVBox" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <VBox fx:id="ticketRutContainerVBox">
+                     <HBox fx:id="rutContainer" prefHeight="100.0" prefWidth="200.0">
+                        <children>
+                           <Label text="R.U.T" />
+                           <Label text="21.xxx.xxx-8" />
+                        </children>
+                     </HBox>
+                     <HBox fx:id="ticketElectronicHBox" prefHeight="100.0" prefWidth="200.0">
+                        <children>
+                           <Label text="Electronic Ticket" />
+                        </children>
+                     </HBox>
+                     <Label fx:id="ticketIdLabel" />
+                  </VBox>
+                  <VBox fx:id="ticketDateContainerVBox" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Label fx:id="dateLabel" />
+                        <Label text="New Ticket" />
+                        <Label />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="ticketDirectionContainerVBox" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Label text="Furniture Store" />
+                        <Label text="Avda. Francisco Salazar TEMUCO" />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="ticketDataContainerVBox">
+                     <HBox fx:id="ticketDataContainerHBox" prefHeight="100.0" prefWidth="200.0">
+                        <children>
+                           <VBox fx:id="ticketCodVBox" prefHeight="200.0" prefWidth="100.0">
+                              <children>
+                                 <Label text="Cod" />
+                              </children></VBox>
+                           <VBox fx:id="ticketNameVBox" prefHeight="200.0" prefWidth="100.0">
+                              <children>
+                                 <Label text="Name" />
+                              </children></VBox>
+                           <VBox fx:id="ticketTypeVBox" prefHeight="200.0" prefWidth="100.0">
+                              <children>
+                                 <Label text="Type" />
+                              </children></VBox>
+                           <VBox fx:id="ticketPriceVBox" prefHeight="200.0" prefWidth="100.0">
+                              <children>
+                                 <Label text="Price" />
+                              </children>
+                           </VBox>
+                        </children>
+                     </HBox>
+                     <ScrollPane fx:id="ticketDataContainerScroll">
+                        <HBox fx:id="ticketDataQualitiesContainerHBox" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <VBox fx:id="ticketDataIdVBox" prefHeight="200.0" prefWidth="100.0" />
+                              <VBox fx:id="ticketDataNameVBox" prefHeight="200.0" prefWidth="100.0" />
+                              <VBox fx:id="ticketDataTypeVBox" prefHeight="200.0" prefWidth="100.0" />
+                              <VBox fx:id="ticketDataPriceVBox" prefHeight="200.0" prefWidth="100.0" />
+                           </children>
+                        </HBox>
+                     </ScrollPane>
+                  </VBox>
+                  <HBox fx:id="ticketClientContainerHBox" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <VBox fx:id="ticketClientContainerVboxLeft" prefHeight="200.0" prefWidth="100.0" />
+                        <VBox fx:id="ticketClientContainerVboxRight" prefHeight="200.0" prefWidth="100.0" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <HBox fx:id="buttonsContainerHBox" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#onPrintButton" text="Print" />
+                  <Button mnemonicParsing="false" onAction="#onAcceptButton" text="Accept" />
+               </children>
+            </HBox>
+         </children></VBox>
+   </center>
+</BorderPane>

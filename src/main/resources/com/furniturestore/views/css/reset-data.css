@@ -1,0 +1,17 @@
+#buttonContainerVBox{
+
+    -fx-pref-width: 195;
+    -fx-min-width: 195;
+    -fx-max-width: 195;
+
+    -fx-pref-height: 210;
+    -fx-min-height: 210;
+    -fx-max-height: 210;
+}
+
+#buttonContainerVBox .button{
+
+    -fx-pref-width: 175;
+    -fx-min-width: 175;
+    -fx-max-width: 175;
+}

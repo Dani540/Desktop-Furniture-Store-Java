@@ -1,0 +1,61 @@
+#exitButtonContainer {
+    -fx-alignment: top-right;
+    -fx-pref-height: 34;
+    -fx-min-height: 34;
+    -fx-max-height: 34;
+    -fx-padding: 5 5 5 5;
+}
+
+#centerContainerHBox {
+    -fx-alignment: center;
+    -fx-spacing: 50;
+    -fx-padding: 15 20 30 40;
+}
+
+#buttonsContainerVBox {
+    -fx-alignment: center;
+    -fx-spacing: 50;
+    -fx-padding: 0 20 0 0;
+}
+
+#buttonsContainerVBox .button {
+    -fx-pref-width: 70;
+    -fx-min-width: 70;
+    -fx-max-width: 70;
+}
+
+#centerContainerHBox .scroll-pane .scroll-bar:vertical {
+    -fx-background-color: transparent;
+}
+
+#centerContainerHBox .scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+#infoVBox, #listVBox{
+    -fx-alignment: top-center;
+    -fx-padding: 10 0 0 10;
+    -fx-spacing: 10;
+    -fx-pref-width: 150;
+    -fx-min-width: 150;
+    -fx-max-width: 150;
+}
+
+#infoVBox{
+    -fx-alignment: center;
+}
+
+#listVBox .button{
+    -fx-pref-width: 100;
+    -fx-min-width: 100;
+    -fx-max-width: 100;
+}
+
+#infoVBox .label{
+    -fx-background-color: white;
+    -fx-text-alignment: center;
+    -fx-background-radius: 4;
+    -fx-border-radius: 4;
+    -fx-border-color: black;
+    -fx-border-width: 1;
+}
