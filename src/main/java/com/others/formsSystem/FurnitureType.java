@@ -56,18 +56,23 @@ public enum FurnitureType implements EnumType {
      */
     @Override
     public Furniture getInstance(int entityId, Node[] data) {
-        FurnitureFactory furnitureFactory = new FurnitureFactory();
+        Furniture furniture=null;
+        try {
+            FurnitureFactory furnitureFactory = new FurnitureFactory();
 
-        String name = ( (TextField) data[0]).getText();
-        String description = ( (TextArea) data[1]).getText();
-        double weight = Double.parseDouble(( (TextField) data[2]).getText());
-        double price = Double.parseDouble(( (TextField) data[3]).getText());
-
-        if (id==0) return furnitureFactory.createTraditionalFurniture(entityId, name, description, weight, price);
-        else{
-            boolean requireBuild = ( (CheckBox) data[4]).isSelected();
-            return furnitureFactory.createPersonalizedFurniture(entityId, name, description, weight, price, requireBuild);
+            String name = ( (TextField) data[0]).getText();
+            String description = ( (TextArea) data[1]).getText();
+            double weight = Double.parseDouble(((TextField) data[2]).getText());
+            double price = Double.parseDouble(((TextField) data[3]).getText());
+            if (id==0) furniture = furnitureFactory.createTraditionalFurniture(entityId, name, description, weight, price);
+            else{
+                boolean requireBuild = ( (CheckBox) data[4]).isSelected();
+                furniture = furnitureFactory.createPersonalizedFurniture(entityId, name, description, weight, price, requireBuild);
+            }
+        }catch (NumberFormatException e){
+            System.out.println("Invalid number");
         }
+        return furniture;
     }
 
 }

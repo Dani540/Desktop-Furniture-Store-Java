@@ -33,7 +33,9 @@ public enum FormatterType{
      * @param limit Es el limite de caracteres.
      */
     void setTextFormatter(TextField textField, int limit){
-        if (id==0) textFormatter.formatterLimitLengthText(textField, limit);
+        if (id==0) textFormatter.stringLimitFormatter(textField, limit);
+        if (id==1) textFormatter.stringToDoubleFormatter(textField, limit);
+        if (id==2) textFormatter.stringToIntFormatter(textField, limit);
     }
 
 

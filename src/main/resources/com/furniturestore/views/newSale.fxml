@@ -22,16 +22,20 @@
                      </VBox.margin>
                   </VBox>
                </children></VBox>
-            <ScrollPane fx:id="scrollPaneTicket" styleClass="vBox-container" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0">
-               <content>
-                  <HBox fx:id="ticketHBoxContainer" prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <VBox fx:id="leftVBoxTicket" prefHeight="200.0" prefWidth="100.0" />
-                        <VBox fx:id="rightVBoxTicket" prefHeight="200.0" prefWidth="100.0" />
-                     </children>
-                  </HBox>
-               </content>
-            </ScrollPane>
+            <VBox fx:id="carContainer">
+               <ScrollPane fx:id="scrollPaneTicket" styleClass="vBox-container" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0">
+                  <content>
+                     <HBox fx:id="ticketHBoxContainer" prefHeight="100.0" prefWidth="200.0">
+                        <children>
+                           <VBox fx:id="leftVBoxTicket" prefHeight="200.0" prefWidth="100.0" />
+                           <VBox fx:id="rightVBoxTicket" prefHeight="200.0" prefWidth="100.0" />
+                        </children>
+                     </HBox>
+                  </content>
+               </ScrollPane>
+               <Label fx:id="carTotalLabel" text="Total: $"/>
+               <Label fx:id="carNoStackLabel" />
+            </VBox>
          </children>
       </HBox>
    </center>

@@ -24,9 +24,8 @@ public class PersonalizedFormView extends FurnitureForm {
 
         setEnumType(FurnitureType.personalized);
 
+        setTextFormatter(FormatterType.stringToDouble, 9, weightTextField, priceTextField);
         setTextFormatter(FormatterType.stringLimit, 12, nameTextField);
-        setTextFormatter(FormatterType.stringToDouble, weightTextField, priceTextField);
-        setTextFormatter(FormatterType.stringLimit, 9, weightTextField, priceTextField);
     }
 
     public void onAddButton() {

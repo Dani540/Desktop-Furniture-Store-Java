@@ -15,11 +15,17 @@ import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.SneakyThrows;
 
 import java.util.Objects;
 
 public abstract class SceneController {
+
+    @Setter @Getter
+    private static Stage stage;
+
     /**
      * Metodo para cambiar la pantalla actual.
      * Al tener constantes con los nombres de las pantallas,
@@ -28,9 +34,8 @@ public abstract class SceneController {
      */
     @SneakyThrows
     public static void switchScene(Scenes sceneID) {
-        Stage stage = FurnitureStoreApp.getStage();
-        FXMLLoader loader = new FXMLLoader(sceneID.getResource());
-        Scene scene = new Scene(loader.load());
+        FXMLLoader fxmlLoader = new FXMLLoader(sceneID.getResource());
+        Scene scene = new Scene(fxmlLoader.load());
         scene.getStylesheets().add(Objects.requireNonNull(FurnitureStoreApp.class.getResource("views/css/default.css")).toString());
         scene.getStylesheets().add(Objects.requireNonNull(FurnitureStoreApp.class.getResource("views/css/effects.css")).toString());
         scene.getStylesheets().add(sceneID.getStyle());

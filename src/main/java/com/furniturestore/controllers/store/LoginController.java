@@ -52,8 +52,19 @@ public class LoginController{
      */
     @FXML
     private void onLoginButton(){
-        loginView.onLoginApp();
+        loginView.onLoginButton();
     }
+    /**
+     * Este metodo recibe la presion de una tecla en el panel principal del stage.
+     * Se usa para hacer el ingreso de usuario mediante el boton "Enter" con el metodo
+     * correspondiente en la instancia de LoginView.
+     * @param event Es el boton pulsado.
+     */
+    @FXML
+    public void onLoginButton(KeyEvent event) {
+        loginView.onLoginButton(event);
+    }
+
     /**
      * Maneja el evento del botón de mostrar/ocultar contraseña.
      * Llama al método showPassword() de LoginView para alternar la visibilidad de la contraseña.
@@ -70,16 +81,5 @@ public class LoginController{
     @FXML
     public void onExitButton() {
         loginView.onExitButton();
-    }
-
-    /**
-     * Este metodo recibe la presion de una tecla en el panel principal del stage.
-     * Se usa para hacer el ingreso de usuario mediante el boton "Enter" con el metodo
-     * correspondiente en la instancia de LoginView.
-     * @param event Es el boton pulsado.
-     */
-    @FXML
-    public void enterLoginApp(KeyEvent event) {
-        loginView.onLoginApp(event);
     }
 }

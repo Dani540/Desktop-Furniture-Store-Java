@@ -54,6 +54,7 @@ public class FurnitureService implements IService<Furniture, FurnitureType> {
     @SneakyThrows
     @Override
     public void addEntity(Furniture entity) {
+        if (entity==null) return;
         Connection connection = FurnitureStoreApp.getDataBase().getCONNECTION();
         boolean isTrad = entity instanceof  TraditionalFurniture;
         Table tradTable = FurnitureType.traditional.getTable();

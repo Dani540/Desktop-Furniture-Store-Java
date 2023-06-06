@@ -32,9 +32,9 @@ public class TraditionalFormView extends FurnitureForm {
     public TraditionalFormView(Label incompleteDataLabel, TextField nameTextField, TextArea descriptionTextArea, TextField weightTextField, TextField priceTextField) {
         super(incompleteDataLabel, nameTextField, descriptionTextArea, weightTextField, priceTextField);
 
+        setTextFormatter(FormatterType.stringToDouble, 9, weightTextField, priceTextField);
         setTextFormatter(FormatterType.stringLimit, 11, nameTextField);
-        setTextFormatter(FormatterType.stringLimit, 9, weightTextField, priceTextField);
-        setTextFormatter(FormatterType.stringToDouble, weightTextField, priceTextField);
+        //setTextFormatter(FormatterType.stringLimit, 9, weightTextField, priceTextField);
 
         setEnumType(FurnitureType.traditional);
     }

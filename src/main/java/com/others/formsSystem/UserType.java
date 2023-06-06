@@ -19,11 +19,22 @@ import java.util.List;
 public enum UserType implements EnumType {
     root(0), vendor(1), admin(2), client(3);
     private final int id;
+    private String symbol;
     private Table table;
+    private int beginIndex;
 
     UserType(int id) {
        this.id=id;
        setTable(id);
+       setSymbol(id);
+       setBeginIndex(id);
+    }
+
+    private void setBeginIndex(int id) {
+        switch (id){
+            case 0,2 -> beginIndex = 1;
+            case 1 -> beginIndex = 0;
+        }
     }
 
     private void setTable(int id){
@@ -85,5 +96,21 @@ public enum UserType implements EnumType {
             client = new Client(rut);
         }
         return client;
+    }
+
+    private void setSymbol(int id) {
+        switch (id){
+            case 0 -> symbol = "/";
+            case 1, 3 -> symbol = "";
+            case 2 -> symbol = ".";
+        }
+    }
+
+    public String getSymbol() {
+        return symbol;
+    }
+
+    public int getBeginIndex() {
+        return beginIndex;
     }
 }

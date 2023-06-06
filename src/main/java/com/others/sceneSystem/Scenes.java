@@ -18,7 +18,8 @@ public enum Scenes{
     personalizedForm(10),
     resetData(11),
     clientForm(12),
-    ticketView(13), insertUser(14);
+    ticketView(13),
+    userForm(14);
 
     private URL resource;
     private String style;
@@ -45,6 +46,7 @@ public enum Scenes{
             case 11 -> path += ("resetData.fxml");
             case 12 -> path += ("clientForm.fxml");
             case 13 -> path += ("ticketView.fxml");
+            case 14 -> path += ("userForm.fxml");
             default -> path += ("default.fxml");
         }
         resource = getResourcePath(path);
@@ -64,6 +66,7 @@ public enum Scenes{
             case 11 -> path += "reset-data.css";
             case 12 -> path += "client-form.css";
             case 13 -> path += "ticket.css";
+            case 14 -> path += "user-form.css";
             default -> path+= "default.css";
         }
         style = getResourcePath(path).toString();

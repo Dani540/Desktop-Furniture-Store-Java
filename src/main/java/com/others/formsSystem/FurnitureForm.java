@@ -35,7 +35,7 @@ public class FurnitureForm extends Form {
      */
     @Override
     public void addButton() {
-        if (allFieldValid())addEntity(getData());
+        if (allFieldValid()) addEntity(getData());
         else setIncompleteDataText();
     }
 

@@ -3,6 +3,7 @@ package com.others.formsSystem;
 import com.furniturestore.models.dao.DAO;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.control.TextFormatter;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -35,8 +36,35 @@ public abstract class Form implements IForm {
         return (fieldValids.stream().allMatch(Boolean::booleanValue));
     }
 
+    /**
+     * Este metodo asigna el mensaje de error en relacion a todos los campos del formulario.
+     */
     public void setIncompleteDataText(){
         incompleteLabel.setText(generateIncompleteText(validateFields(data)));
+    }
+
+    /**
+     * Este metodo asigna un mensaje de error personalizado.
+     * @param message Es el mensaje a mostrar.
+     */
+    public void setIncompleteDataText(String message){
+        incompleteLabel.setText(message);
+    }
+
+    /**
+     * Muestra el mensaje de error en relacion a los campos requeridos.
+     * @param nodes Son los campos requeridos.
+     */
+    public void setIncompleteDataText(Node ...nodes){
+        incompleteLabel.setText(generateIncompleteText(validateFields(nodes)));
+    }
+
+    /**
+     * Muestra el mensaje de error en relacion si los campos especificados son validos o no. (vacios)
+     * @param validFields Es la lista de booleanos con los campos validos en orden.
+     */
+    public void setIncompleteDataText(List<Boolean> validFields){
+        incompleteLabel.setText(generateIncompleteText(validFields));
     }
 
     /**
@@ -84,13 +112,13 @@ public abstract class Form implements IForm {
     }
 
     /**
-     * Valida un campo de texto (considerando TextField y TextArea) en funcion de si está vacio.
+     * Valida un campo de texto (considerando TextField y TextArea) en funcion de si está vacio y si contiene mas de un punto (invalido).
      * @param field Es el campo para validar.
-     * @return Devuelve true o false en funcion de si no esta vacio.;
+     * @return Devuelve true o false en funcion de si no esta vacio y solo tiene un punto.
      */
     @Override
     public boolean isValidField(Node field) {
-        boolean validField = false;
+        boolean validField;
         if (field instanceof TextField aux){
             validField = !aux.getText().isEmpty();
         }else if (field instanceof TextArea aux){

@@ -8,10 +8,15 @@ import com.furniturestore.views.NewSaleView;
 import com.others.formsSystem.TextFormatter;
 import com.others.sceneSystem.AuxiliaryWindow;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 
 public class NewSaleController {
+    @FXML
+    private Label carNoStackLabel;
+    @FXML
+    private Label carTotalLabel;
     @FXML
     private ScrollPane scrollPaneTicket;
     @FXML
@@ -40,6 +45,8 @@ public class NewSaleController {
         newSaleView.loadTicket(leftVBoxTicket, rightVBoxTicket);
         textFormatter.autoScroll(scrollPaneTicket, leftVBoxTicket);
         textFormatter.autoScroll(scrollPaneTicket, rightVBoxTicket);
+        newSaleView.loadTotal(carTotalLabel);
+        newSaleView.setCarNoStackLabel(carNoStackLabel);
     }
 
     /**

@@ -1,0 +1,57 @@
+#allContainerVBox{
+    -fx-pref-height: 235;
+    -fx-max-height: 235;
+    -fx-min-height: 235;
+
+    -fx-pref-width: 250;
+    -fx-min-width: 250;
+    -fx-max-width: 250;
+
+    -fx-padding: 20 0 10 0;
+}
+
+#formContainerVBox{
+    -fx-pref-height: 150;
+    -fx-max-height: 150;
+    -fx-min-height: 150;
+
+    -fx-pref-width: 240;
+    -fx-min-width: 240;
+    -fx-max-width: 240;
+
+    -fx-border-width: 0;
+    -fx-effect: dropshadow(gaussian, transparent, 0,0,0,0);
+}
+
+#checkBoxContainerVBox{
+    -fx-padding: 20 0 0 0;
+    -fx-spacing: 5;
+}
+
+#checkBoxContainerHBox, #checkBoxLabelContainerHBox{
+    -fx-pref-width: 240;
+    -fx-min-width: 240;
+    -fx-max-width: 240;
+
+    -fx-alignment: center;
+    -fx-spacing: 15;
+
+    -fx-background-color: #282828FF;
+}
+
+#checkBoxContainerHBox{
+    -fx-spacing: 30;
+}
+
+#checkBoxContainerHBox .check-box .box{
+    -fx-background-color: transparent;
+}
+
+#checkBoxLabelContainerHBox .label {
+    -fx-text-fill: #545454;
+}
+
+#buttonsContainerHBox{
+    -fx-alignment: center;
+}
+

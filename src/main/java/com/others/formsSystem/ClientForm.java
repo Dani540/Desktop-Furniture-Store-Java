@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public class ClientForm extends Form {
-
     private final ClientFormDAO clientFormDAO;
 
     /**
@@ -24,6 +23,7 @@ public class ClientForm extends Form {
      */
     public ClientForm(Label incompleteData, Node...nodes) {
         clientFormDAO = new ClientFormDAO();
+
         setDao(clientFormDAO);
         setIncompleteLabel(incompleteData);
         setData(nodes);
@@ -37,26 +37,28 @@ public class ClientForm extends Form {
     @Override
     public void addButton() {
         TextField rutTextField = (TextField) getData()[0];
+
         if ( isValidField(rutTextField) && rutTextField.getText().length()==8) {    // Si el campo de rut esta llenado con 8 digitos.
             if (clientFormDAO.isClientExists(getData())){   // Si el cliente existe en la base de datos
-                if (!getInfo(getData()).get(1).isEmpty() && !getInfo(getData()).get(2).isEmpty()){  // Si el nombre y apellido del cliente estan rellenados. Si no, hay que escribirlos.
+                if (!getInfo(getData()).get(1).isEmpty() && !getInfo(getData()).get(2).isEmpty()){  // Si el nombre y apellido del cliente en la base de datos estan rellenados. Si no, hay que escribirlos.
                     loadInfo(getData()); // Se carga su informacion en el formulario
                     setRClient(); // Se establece como cliente temporal de la venta.
                     AuxiliaryWindow.onConfirmSale(); // Se genera la ventana auxiliar para confirmar la venta.
                 }
                 setIncompleteDataText();
             }else{  //Si el cliente no existe en la base de datos
-                if (validateFields(getData()[1], getData()[2]).stream().allMatch(Boolean::booleanValue)){ // Si los campos del nombre y apellido estan rellenados.
+                List<Boolean> validFields = validateFields(getData()[1], getData()[2]); // TextFields a verificar.
+                if (validFields.stream().allMatch(Boolean::booleanValue)){ // Si los campos del nombre y apellido estan rellenados.
                     addEntity(getData());   // Se añade el cliente con los datos introducidos a la base de datos.
                     loadInfo(getData()); // Se carga su informacion en el formulario
                     setRClient(); // Se establece como cliente temporal de la venta.
                     AuxiliaryWindow.onConfirmSale(); // Se genera la ventana auxiliar para confirmar la venta.
                 }
-                setIncompleteDataText();
+                setIncompleteDataText(validFields); //Genera un mensaje de error a partir de los textfields invalidos.
             }
-        }setIncompleteDataText();
+        }
+        setIncompleteDataText("Invalid Rut");
     }
-
 
     /**
      * Este metodo establece los atributos del cliente en proceso.
@@ -121,7 +123,7 @@ public class ClientForm extends Form {
 
     /**
      * Carga la informacion del cliente en los campos del formulario.
-     * @param data
+     * @param data Son los campos del formulario.
      */
     private void loadInfo(Node[] data){
         List<String> info = getInfo(data);

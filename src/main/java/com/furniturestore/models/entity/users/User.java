@@ -17,12 +17,17 @@ public final class User extends Entity {
     private final UserType userType;
 
     public User(String username, String password, UserType userType) {
-        this.username = username;
+        this.username = userType.getSymbol() + username;
         this.password = password;
         this.userType = userType;
     }
 
     public String getData(){
         return username+password;
+    }
+
+    @Override
+    public String toString() {
+        return "id: "+id+"\nusername: "+username+"\npassword: "+password+"\nusertype: "+userType.name();
     }
 }

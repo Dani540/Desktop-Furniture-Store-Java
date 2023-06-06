@@ -7,6 +7,7 @@ import javafx.scene.layout.VBox;
 import java.util.Map;
 
 public class InformationView {
+
     // User: username
     // Range: range of user
     // Traditional furniture registered:

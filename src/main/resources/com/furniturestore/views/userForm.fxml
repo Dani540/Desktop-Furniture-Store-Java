@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import org.controlsfx.control.CheckComboBox?>
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.furniturestore.controllers.store.UserFormController">
+   <top>
+      <HBox styleClass="exit-button-container">
+         <Button fx:id="exitButton" text="X" onAction="#onExitButton" />
+      </HBox>
+   </top>
+   <center>
+      <VBox fx:id="allContainerVBox" styleClass="vBox-container" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <Label fx:id="test" />
+         <children>
+            <VBox fx:id="formContainerVBox" styleClass="vBox-container" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <TextField fx:id="usernameTextField" promptText="Username" />
+                  <TextField fx:id="passwordTextField" promptText="Password" />
+                  <VBox fx:id="checkBoxContainerVBox">
+                     <HBox fx:id="checkBoxContainerHBox" >
+                        <CheckBox fx:id="adminCheckBox" />
+                        <CheckBox fx:id="vendorCheckBox" />
+                     </HBox>
+                     <HBox fx:id="checkBoxLabelContainerHBox" >
+                        <Label text="Admin"/>
+                        <Label text="Vendor" />
+                     </HBox>
+                  </VBox>
+               </children>
+            </VBox>
+            <HBox fx:id="buttonsContainerHBox" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button mnemonicParsing="false" text="Add" onAction="#onAddButton" />
+                  <Button mnemonicParsing="false" text="Back" onAction="#onBackButton" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

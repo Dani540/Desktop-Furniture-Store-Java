@@ -78,7 +78,7 @@ public class DataBase {
      * @param user Es el usuario a introducir.
      */
     public void setUser(User user){
-        userService.setUser(user);
+        userService.addEntity(user);
     }
 
     /**
@@ -87,7 +87,7 @@ public class DataBase {
      * @return Devuelve una lista con todos los usuarios.
      */
     public List<User> getUsers(){
-        return userService.getUsers();
+        return userService.getEntities();
     }
 
     /**
@@ -194,6 +194,10 @@ public class DataBase {
      */
     public UserType getUserType(String[] userData) {
         return userService.getUserType(userData);
+    }
+
+    public UserType getUserType() {
+        return userService.getUserType();
     }
 
     /**

@@ -7,6 +7,7 @@
 package com.furniturestore.views;
 
 import com.furniturestore.models.dao.LoginDAO;
+import com.others.formsSystem.TextFormatter;
 import com.others.sceneSystem.AuxiliaryWindow;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -45,12 +46,16 @@ public class LoginView {
         loginDAO = new LoginDAO();
     }
 
+    public void initialize(){
+        new TextFormatter().stringLimitFormatter(11, usernameTextField, passwordTextField);
+    }
+
     /**
      * Este metodo se encarga de la gestion del inicio de sesion.
      * Contiene la validacion de campos, los datos de estos y el manejo de mensajes de error en GUI.
      */
 
-    public void onLoginApp() {
+    public void onLoginButton() {
         boolean [] fieldValidation = fieldValidation();
         String [] userData = { usernameTextField.getText(),
                 passwordTextField.isDisable() ? passwordPasswordField.getText() : passwordTextField.getText()};
@@ -143,7 +148,7 @@ public class LoginView {
      * Se usa para hacer el ingreso de usuario mediante el boton "Enter".
      * @param event Es el boton pulsado.
      */
-    public void onLoginApp(KeyEvent event) {
-        if (event.getCode().equals(KeyCode.ENTER)) onLoginApp();
+    public void onLoginButton(KeyEvent event) {
+        if (event.getCode().equals(KeyCode.ENTER)) onLoginButton();
     }
 }

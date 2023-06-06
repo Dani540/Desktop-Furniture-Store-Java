@@ -16,8 +16,6 @@ import static com.others.sceneSystem.Scenes.login;
 
 public class FurnitureStoreApp extends Application {
     @Getter
-    private static Stage stage;
-    @Getter
     private static DataBase dataBase;
     @Setter @Getter
     private static UserType userType;
@@ -29,7 +27,7 @@ public class FurnitureStoreApp extends Application {
     public void start(Stage stage){
         stage.setResizable(false);
         stage.initStyle(StageStyle.TRANSPARENT);
-        FurnitureStoreApp.stage = stage;
+        SceneController.setStage(stage);
         dataBase = new DataBase();
         SceneController.switchScene(login);
 

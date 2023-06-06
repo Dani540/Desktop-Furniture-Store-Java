@@ -105,3 +105,20 @@
 #leftVBoxTicket #rightVBoxTicket{
     -fx-spacing: 5;
 }
+
+#carContainer{
+    -fx-pref-height: 200;
+    -fx-max-height: 200;
+    -fx-min-height: 200;
+
+    -fx-alignment: center;
+    -fx-spacing: 10;
+}
+
+#carNoStackLabel{
+    -fx-text-fill: #ff3030;
+}
+
+#carTotalLabel{
+    -fx-text-fill: #545454;
+}

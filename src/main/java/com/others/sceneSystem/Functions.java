@@ -14,7 +14,7 @@ public enum Functions{
 
     private void setFunction(int id) {
         switch (id){
-            case 0 -> IFunction = () -> FurnitureStoreApp.getStage().close();
+            case 0 -> IFunction = () -> SceneController.getStage().close();
             case 1 -> IFunction = () -> SceneController.switchScene(Scenes.ticketView);
         }
     }

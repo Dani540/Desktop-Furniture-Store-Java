@@ -26,7 +26,7 @@ public class LoginDAO {
      * @return retorna un 0 o un 1 para la gestion del manejo de errores en la GUI, si no solo se cambia la escena.
      */
     public int onLoginApp(boolean isUsernameValid, boolean isPasswordValid , String[] userData) {
-        return validField(isUsernameValid, isPasswordValid, userData);
+        return isValidField(isUsernameValid, isPasswordValid, userData);
     }
 
     /**
@@ -36,7 +36,7 @@ public class LoginDAO {
      * @param userData Los datos del usuario.
      * @return Devuelve los estados de la validacion.
      */
-    private int validField(boolean isUsernameValid, boolean isPasswordValid, String[] userData) {
+    private int isValidField(boolean isUsernameValid, boolean isPasswordValid, String[] userData) {
         if (isUsernameValid && isPasswordValid)
             return ifUserExists(userData);
         return -1;
@@ -49,16 +49,17 @@ public class LoginDAO {
      */
     private int ifUserExists(String[] userData) {
         setUserType(userData[0]);
+
         UserType userType = getUser(userData).getUserType();
 
-        int state = (FurnitureStoreApp.getDataBase().isUserExists(getUser(userData)));
+        int state = (FurnitureStoreApp.getDataBase().isUserExists( getUser(userData) ));
 
         if ( state==1 ) {
             System.out.println("Type of user logged: " + userType);
             FurnitureStoreApp.setUserType(userType);
-            FurnitureStoreApp.setUsername(userData[0].substring(1));
+            FurnitureStoreApp.setUsername(userData[0]);
             if (!getUser(userData).getUserType().equals(UserType.root)) SceneController.switchScene(Scenes.index);
-            else SceneController.switchScene(Scenes.insertUser);
+            else SceneController.switchScene(Scenes.userForm);
             return state;
         }
         return state;
@@ -72,8 +73,8 @@ public class LoginDAO {
      * @param username Es el nombre de usuario ingresado.
      */
     private void setUserType(String username) {
-        if (isRoot(username))       FurnitureStoreApp.getDataBase().setUserType(UserType.root);
-        else if (isAdmin(username)) FurnitureStoreApp.getDataBase().setUserType(UserType.admin);
+        if ( isRoot(username) )       FurnitureStoreApp.getDataBase().setUserType(UserType.root);
+        else if ( isAdmin(username) ) FurnitureStoreApp.getDataBase().setUserType(UserType.admin);
         else FurnitureStoreApp.getDataBase().setUserType(UserType.vendor);
     }
 
@@ -102,6 +103,6 @@ public class LoginDAO {
      */
     private User getUser(String[] userData) {
         UserType userType = FurnitureStoreApp.getDataBase().getUserType(userData);
-        return new User(userData[0], userData[1], userType);
+        return new User(userData[0].substring(userType.getBeginIndex()), userData[1], userType);
     }
 }

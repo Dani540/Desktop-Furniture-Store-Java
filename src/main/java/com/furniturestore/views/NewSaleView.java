@@ -14,6 +14,7 @@ import java.util.List;
 public class NewSaleView {
 
     private final NewSaleDAO newSaleDAO;
+    private Label carNoStackLabel;
 
     public NewSaleView() {
         newSaleDAO = new NewSaleDAO();
@@ -40,6 +41,7 @@ public class NewSaleView {
      */
     public void loadTicket(VBox leftVBoxTicket, VBox rightVBoxTicket) {
         List<Furniture> sale = newSaleDAO.loadSale();
+
         ObservableList<Node> productNames = leftVBoxTicket.getChildren();
         ObservableList<Node> productPrices = rightVBoxTicket.getChildren();
         sale.forEach(n ->{
@@ -52,8 +54,26 @@ public class NewSaleView {
         SceneController.switchScene(Scenes.personalizedForm);
     }
 
+    /**
+     * Evento de accion para el boton pagar.
+     */
     public void onPayButton() {
         if (newSaleDAO.loadSale().size()>0) SceneController.switchScene(Scenes.clientForm);
-        else System.out.println("NO SUFFICIENT AMOUNT");
+        else carNoStackLabel.setText("NO SUFFICIENT AMOUNT");
+    }
+
+    /**
+     * Carga la cantidda total de la venta en el label correspondiente.
+     * @param carTotalLabel Es el label del total.
+     */
+
+    public void loadTotal(Label carTotalLabel) {
+        List<Furniture> sale = newSaleDAO.loadSale();
+        double total = sale.stream().mapToDouble(Furniture::getPrice).sum();
+        carTotalLabel.setText("Total: $"+total);
+    }
+
+    public void setCarNoStackLabel(Label carNoStackLabel) {
+        this.carNoStackLabel = carNoStackLabel;
     }
 }
