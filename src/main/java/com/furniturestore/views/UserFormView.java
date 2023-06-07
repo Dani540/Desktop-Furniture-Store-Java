@@ -4,15 +4,21 @@ import com.furniturestore.FurnitureStoreApp;
 import com.furniturestore.models.dao.UserFormDAO;
 import com.others.formsSystem.TextFormatter;
 import com.others.formsSystem.UserType;
+import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import lombok.Setter;
 
 public class UserFormView {
     private final UserFormDAO userFormDao;
+    @Setter
+    private TextField usernameTextField;
+    @Setter
+    private TextField passwordTextField;
     private String username="", password="";
     private UserType userType;
-    private Label test;
+    private Label feedBackLabel;
 
     public UserFormView() {
         userFormDao = new UserFormDAO();
@@ -24,11 +30,17 @@ public class UserFormView {
                 if (userType!=null) {
                     FurnitureStoreApp.getDataBase().setUserType(userType);
                     userFormDao.setUser(username, password, userType);
-                    test.setText("User added success!");
-                }else test.setText("Not User Type Selected!");
+                    feedBackLabel.setText("User added success!");
+                    cleanForm();
+                }else feedBackLabel.setText("Not User Type Selected!");
             }
-            else test.setText("Password Empty!");
-        }else test.setText("Username Empty!");
+            else feedBackLabel.setText("Password Empty!");
+        }else feedBackLabel.setText("Username Empty!");
+    }
+
+    private void cleanForm() {
+        usernameTextField.setText("");
+        passwordTextField.setText("");
     }
 
     public void initializeTextField(TextField usernameTextField, TextField passwordTextField) {
@@ -53,7 +65,7 @@ public class UserFormView {
         });
     }
 
-    public void setTest(Label test) {
-        this.test = test;
+    public void setFeedLabel(Label feedBackLabel) {
+        this.feedBackLabel = feedBackLabel;
     }
 }

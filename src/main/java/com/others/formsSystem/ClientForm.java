@@ -1,5 +1,6 @@
 package com.others.formsSystem;
 
+import com.customerrors.InvalidClient;
 import com.furniturestore.FurnitureStoreApp;
 import com.furniturestore.models.dao.ClientFormDAO;
 import com.others.RClient;
@@ -36,28 +37,37 @@ public class ClientForm extends Form {
      */
     @Override
     public void addButton() {
+
         TextField rutTextField = (TextField) getData()[0];
 
-        if ( isValidField(rutTextField) && rutTextField.getText().length()==8) {    // Si el campo de rut esta llenado con 8 digitos.
-            if (clientFormDAO.isClientExists(getData())){   // Si el cliente existe en la base de datos
-                if (!getInfo(getData()).get(1).isEmpty() && !getInfo(getData()).get(2).isEmpty()){  // Si el nombre y apellido del cliente en la base de datos estan rellenados. Si no, hay que escribirlos.
-                    loadInfo(getData()); // Se carga su informacion en el formulario
-                    setRClient(); // Se establece como cliente temporal de la venta.
-                    AuxiliaryWindow.onConfirmSale(); // Se genera la ventana auxiliar para confirmar la venta.
+        try {
+            if (isValidField(rutTextField) && rutTextField.getText().length() == 8) {    // Si el campo de rut esta llenado con 8 digitos.
+                if (clientFormDAO.isClientExists(getData())) {   // Si el cliente existe en la base de datos
+                    if (!getInfo(getData()).get(1).isEmpty() && !getInfo(getData()).get(2).isEmpty()) {  // Si el nombre y apellido del cliente en la base de datos estan rellenados. Si no, hay que escribirlos.
+                        loadInfo(getData()); // Se carga su informacion en el formulario
+                        setRClient(); // Se establece como cliente temporal de la venta.
+                        AuxiliaryWindow.onConfirmSale(); // Se genera la ventana auxiliar para confirmar la venta.
+                    }else throw new InvalidClient(0);
+                    setIncompleteDataText();
+                } else {  //Si el cliente no existe en la base de datos
+                    List<Boolean> validFields = validateFields(getData()[1], getData()[2]); // TextFields a verificar.
+                    if (validFields.stream().allMatch(Boolean::booleanValue)) { // Si los campos del nombre y apellido estan rellenados.
+                        addEntity(getData());   // Se añade el cliente con los datos introducidos a la base de datos.
+                        loadInfo(getData()); // Se carga su informacion en el formulario
+                        setRClient(); // Se establece como cliente temporal de la venta.
+                        AuxiliaryWindow.onConfirmSale(); // Se genera la ventana auxiliar para confirmar la venta.
+                    }
+                    setIncompleteDataText(validFields); //Genera un mensaje de error a partir de los textfields invalidos.
+                    throw new InvalidClient(0);
                 }
-                setIncompleteDataText();
-            }else{  //Si el cliente no existe en la base de datos
-                List<Boolean> validFields = validateFields(getData()[1], getData()[2]); // TextFields a verificar.
-                if (validFields.stream().allMatch(Boolean::booleanValue)){ // Si los campos del nombre y apellido estan rellenados.
-                    addEntity(getData());   // Se añade el cliente con los datos introducidos a la base de datos.
-                    loadInfo(getData()); // Se carga su informacion en el formulario
-                    setRClient(); // Se establece como cliente temporal de la venta.
-                    AuxiliaryWindow.onConfirmSale(); // Se genera la ventana auxiliar para confirmar la venta.
-                }
-                setIncompleteDataText(validFields); //Genera un mensaje de error a partir de los textfields invalidos.
+            }else{
+                setIncompleteDataText("Invalid Rut");
+                throw new InvalidClient(1);
             }
+        }catch (InvalidClient e){
+            System.out.println(e);
         }
-        setIncompleteDataText("Invalid Rut");
+
     }
 
     /**
@@ -139,6 +149,21 @@ public class ClientForm extends Form {
      */
     private List<String> getInfo(Node[] data) {
         return clientFormDAO.getInstanceInfo(data);
+    }
+
+    /**
+     * Sobre escribi el metodo ya que en este formulario el ultimo campo es electivo.
+     * @param fieldValids Es la lista de booleanos con los datos de los campos validos.
+     * @return Devuelve un texto con la informacion de campos invalidos.
+     */
+    @Override
+    public String generateIncompleteText(List<Boolean> fieldValids) {
+        List<String> list = IntStream.range(0, fieldValids.size())
+                .filter(i -> !fieldValids.get(i))
+                .mapToObj(this::getNoFieldValidString)
+                .toList();
+        String aux = String.join(", ",list);
+        return aux.length()>0? aux + "\nEmpty!" : "";
     }
 
     /**

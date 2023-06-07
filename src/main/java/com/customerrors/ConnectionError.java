@@ -6,4 +6,5 @@ public class ConnectionError extends SQLException {
     public ConnectionError(String message){
         super(message);
     }
+
 }

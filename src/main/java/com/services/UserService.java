@@ -4,26 +4,28 @@
 
 package com.services;
 
-import com.furniturestore.FurnitureStoreApp;
+import com.customerrors.InvalidUser;
 import com.furniturestore.models.entity.users.User;
 import com.others.formsSystem.UserType;
+import com.repository.DataBase;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.SneakyThrows;
-import lombok.experimental.Delegate;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class UserService implements IService<User, UserType>{
+    private final DataBase dataBase;
     @Setter @Getter
     private UserType userType;
+
+    public UserService(DataBase dataBase) {
+        this.dataBase = dataBase;
+    }
 
     /**
      * Comprueba si el usuario ingresado existe en la base de datos.
@@ -31,18 +33,31 @@ public class UserService implements IService<User, UserType>{
      * @param user Es el usuario ingresado.
      * @return Devuelve 1 o 2 en funcion de si existe y sus datos estan correctos, devuelve 0 si no existe.
      */
-    public int isUserExits(User user) {
+    public int stateOfUser(User user){
         int state = 0;  // No existe
-        System.out.println("user in service: "+user.toString());
         List<User> users = getEntities();
-        users.forEach(System.out::println);
-        if (users.stream().anyMatch(n -> n.getData().equals(user.getData()) && n.getUserType().equals(user.getUserType())))
-            state = 1;  // Existe
-        else if (users.stream().anyMatch(n -> n.getUsername().equals(user.getUsername()) && n.getUserType().equals(user.getUserType())))
-            state = 2;  // Contraseña incorrecta
+        try {
+            if (isUserExits(user))
+                state = 1;  // Existe
+            else if (users.stream().anyMatch(n -> n.getUsername().equals(user.getUsername()) && n.getUserType().equals(user.getUserType()))) {
+                state = 2;  // Contraseña incorrecta
+            }
+            if (state==0||state==2) throw new InvalidUser(state);
+        }catch (InvalidUser e){
+            System.out.println(e);
+        }
         return state;
     }
 
+    /**
+     * Comprueba si el usuario ingresado existe en la base de datos.
+     * @param user Es el usuario ingresado.
+     * @return Devuelve si existe o no.
+     */
+    public boolean isUserExits(User user){
+        List<User> users = getEntities();
+        return users.stream().anyMatch(n -> n.getData().equals(user.getData()) && n.getUserType().equals(user.getUserType()));
+    }
 
     /**
      * Obtiene el tipo de usuario ingresado a partir de los datos en la base de datos.
@@ -77,8 +92,7 @@ public class UserService implements IService<User, UserType>{
     @SneakyThrows
     @Override
     public void addEntity(User entity){
-        System.out.println(userType);
-        Connection connection = FurnitureStoreApp.getDataBase().getCONNECTION();
+        Connection connection = dataBase.getCONNECTION();
         PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO users (username, password, usertype) VALUES (?,?,?)");
         preparedStatement.setString(1, entity.getUsername());
         preparedStatement.setString(2, entity.getPassword());
@@ -94,7 +108,7 @@ public class UserService implements IService<User, UserType>{
     @SneakyThrows
     @Override
     public List<User> getEntities() {
-        Connection connection = FurnitureStoreApp.getDataBase().getCONNECTION();
+        Connection connection = dataBase.getCONNECTION();
 
         List<User> list = new ArrayList<>();
 
@@ -116,4 +130,41 @@ public class UserService implements IService<User, UserType>{
     public List<User> getEntities(UserType type) {
         return null;
     }
+
+    @SneakyThrows
+    public void removeUser(User user) {
+        Connection connection = dataBase.getCONNECTION();
+        Statement statement = connection.createStatement();
+        statement.execute("DELETE FROM " + userType.getTable().table() + " WHERE id = " + user.getId());
+        statement.close();
+    }
+
+    @SneakyThrows
+    public User getUser(User user) {
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        int id = user.getId();
+
+        try {
+            connection = dataBase.getCONNECTION();
+            statement = connection.prepareStatement("SELECT * FROM users WHERE username = ? AND password = ? AND usertype = ?");
+            statement.setString(1, user.getUsername());
+            statement.setString(2, user.getPassword());
+            statement.setInt(3, user.getUserType().getId());
+            resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                id = resultSet.getInt("id");
+            }
+        } finally {
+            // Cerrar los recursos en un bloque finally para asegurar su liberación
+            assert resultSet != null;
+            resultSet.close();
+            statement.close();
+            connection.close();
+        }
+
+        return new User(id, user.getUsername(), user.getPassword(), user.getUserType());
+    }
+
 }

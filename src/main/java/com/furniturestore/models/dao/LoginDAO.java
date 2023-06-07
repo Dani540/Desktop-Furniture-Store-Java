@@ -11,8 +11,6 @@ import com.furniturestore.models.entity.users.User;
 import com.others.formsSystem.UserType;
 import com.others.sceneSystem.Scenes;
 
-import java.util.Arrays;
-
 public class LoginDAO {
 
     /**
@@ -25,7 +23,7 @@ public class LoginDAO {
      * @param userData Datos del usuario ingresado.
      * @return retorna un 0 o un 1 para la gestion del manejo de errores en la GUI, si no solo se cambia la escena.
      */
-    public int onLoginApp(boolean isUsernameValid, boolean isPasswordValid , String[] userData) {
+    public int onLoginApp(boolean isUsernameValid, boolean isPasswordValid , String[] userData){
         return isValidField(isUsernameValid, isPasswordValid, userData);
     }
 
@@ -38,7 +36,7 @@ public class LoginDAO {
      */
     private int isValidField(boolean isUsernameValid, boolean isPasswordValid, String[] userData) {
         if (isUsernameValid && isPasswordValid)
-            return ifUserExists(userData);
+            return stateOfUser(userData);
         return -1;
     }
 
@@ -47,12 +45,12 @@ public class LoginDAO {
      * @param userData Son los datos del usuario a comprobar.
      * @return Devuelve true/false en funcion de su existencia.
      */
-    private int ifUserExists(String[] userData) {
+    private int stateOfUser(String[] userData){
         setUserType(userData[0]);
 
         UserType userType = getUser(userData).getUserType();
 
-        int state = (FurnitureStoreApp.getDataBase().isUserExists( getUser(userData) ));
+        int state = (FurnitureStoreApp.getDataBase().stateOfUser( getUser(userData) ));
 
         if ( state==1 ) {
             System.out.println("Type of user logged: " + userType);

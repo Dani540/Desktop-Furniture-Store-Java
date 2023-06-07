@@ -8,6 +8,7 @@ package com.services;
 import com.furniturestore.FurnitureStoreApp;
 import com.furniturestore.models.entity.users.Client;
 import com.others.formsSystem.UserType;
+import com.repository.DataBase;
 import com.repository.Table;
 import lombok.SneakyThrows;
 
@@ -21,6 +22,12 @@ import java.util.List;
 
 public class ClientServices implements IService<Client, UserType> {
 
+    private final DataBase dataBase;
+
+    public ClientServices(DataBase dataBase) {
+        this.dataBase = dataBase;
+    }
+
     /**
      * Esta implementacion de addEntity añade una entidad de cliente
      * a la tabla respectiva en la base de datos.
@@ -29,7 +36,7 @@ public class ClientServices implements IService<Client, UserType> {
     @SneakyThrows
     @Override
     public void addEntity(Client client) {
-        Connection connection = FurnitureStoreApp.getDataBase().getCONNECTION();
+        Connection connection = dataBase.getCONNECTION();
         Table userTable = UserType.client.getTable();
         String statement = insertInto(userTable.table(), userTable.values());
         PreparedStatement preparedStatement = connection.prepareStatement(statement);
@@ -49,7 +56,7 @@ public class ClientServices implements IService<Client, UserType> {
     @SneakyThrows
     @Override
     public List<Client> getEntities() {
-        Connection connection = FurnitureStoreApp.getDataBase().getCONNECTION();
+        Connection connection = dataBase.getCONNECTION();
         Statement statement = connection.createStatement();
         return getClients(statement);
     }
@@ -60,7 +67,7 @@ public class ClientServices implements IService<Client, UserType> {
     @SneakyThrows
     @Override
     public List<Client> getEntities(UserType type) {
-        Connection connection = FurnitureStoreApp.getDataBase().getCONNECTION();
+        Connection connection = dataBase.getCONNECTION();
         Statement statement = connection.createStatement();
 
         return getClients(statement);

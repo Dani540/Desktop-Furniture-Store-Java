@@ -10,7 +10,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 public class UserFormController {
-    public Label test;
+    @FXML
+    private Label feedbackLabel;
     @FXML
     private TextField usernameTextField;
     @FXML
@@ -28,7 +29,9 @@ public class UserFormController {
     public void initialize(){
         userFormView.initializeTextField(usernameTextField, passwordTextField);
         userFormView.initializeCheckBoxes(adminCheckBox, vendorCheckBox);
-        userFormView.setTest(test);
+        userFormView.setFeedLabel(feedbackLabel);
+        userFormView.setUsernameTextField(usernameTextField);
+        userFormView.setPasswordTextField(passwordTextField);
     }
 
     @FXML

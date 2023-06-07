@@ -55,7 +55,7 @@ public class LoginView {
      * Contiene la validacion de campos, los datos de estos y el manejo de mensajes de error en GUI.
      */
 
-    public void onLoginButton() {
+    public void onLoginButton(){
         boolean [] fieldValidation = fieldValidation();
         String [] userData = { usernameTextField.getText(),
                 passwordTextField.isDisable() ? passwordPasswordField.getText() : passwordTextField.getText()};
@@ -148,7 +148,7 @@ public class LoginView {
      * Se usa para hacer el ingreso de usuario mediante el boton "Enter".
      * @param event Es el boton pulsado.
      */
-    public void onLoginButton(KeyEvent event) {
+    public void onLoginButton(KeyEvent event){
         if (event.getCode().equals(KeyCode.ENTER)) onLoginButton();
     }
 }

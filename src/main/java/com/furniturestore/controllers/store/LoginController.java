@@ -61,7 +61,7 @@ public class LoginController{
      * @param event Es el boton pulsado.
      */
     @FXML
-    public void onLoginButton(KeyEvent event) {
+    public void onLoginButton(KeyEvent event){
         loginView.onLoginButton(event);
     }
 

@@ -34,7 +34,7 @@ public class PersonalizedFormView extends FurnitureForm {
             addToSale();
             cleanForm();
             SceneController.switchScene(Scenes.newSale);
-        }
+        }else setIncompleteDataText();
     }
 
     public void addToSale(){

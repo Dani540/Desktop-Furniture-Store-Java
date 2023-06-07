@@ -44,6 +44,7 @@ public class NewSaleView {
 
         ObservableList<Node> productNames = leftVBoxTicket.getChildren();
         ObservableList<Node> productPrices = rightVBoxTicket.getChildren();
+
         sale.forEach(n ->{
             productNames.add(new Label(" " + n.getName() + " "));
             productPrices.add(new Label(" " + n.getPrice() + " "));

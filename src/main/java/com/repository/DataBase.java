@@ -42,9 +42,9 @@ public class DataBase {
         USER = "root";
         PASSWORD = "";
 
-        userService = new UserService();
-        furnitureService = new FurnitureService();
-        clientServices = new ClientServices();
+        userService = new UserService(this);
+        furnitureService = new FurnitureService(this);
+        clientServices = new ClientServices(this);
     }
 
     /**
@@ -93,11 +93,11 @@ public class DataBase {
     /**
      * Comprueba si el usuario indexeado existe en la base de datos.
      *
-     * @param user     Es el usuario a verificar
+     * @param user Es el usuario a verificar
      * @return Devuelve si el usuario existe.
      */
-    public int isUserExists(User user) {
-        return userService.isUserExits(user);
+    public int stateOfUser(User user){
+        return userService.stateOfUser(user);
     }
 
     /**
@@ -255,7 +255,7 @@ public class DataBase {
      * @param furnitureType Es el tipo de mueble a consultar.
      * @return Devuelve la cantidad de muebles registrados.
      */
-    public int getFurnitureQuatity(FurnitureType furnitureType) {
+    public int getFurnitureQuantity(FurnitureType furnitureType) {
         return furnitureService.getQuantities(furnitureType);
     }
 
@@ -265,5 +265,21 @@ public class DataBase {
      */
     public String getDate() {
         return new Date().toString();
+    }
+
+    public void removeUser(User user) {
+        userService.removeUser(user);
+    }
+
+    public User getUser(User user) {
+        return userService.getUser(user);
+    }
+
+    public boolean isUserExists(User user) {
+        return userService.isUserExits(user);
+    }
+
+    public boolean isFurnitureExists(Furniture furniture, FurnitureType type) {
+        return furnitureService.isFurnitureExists(furniture, type);
     }
 }

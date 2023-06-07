@@ -10,6 +10,7 @@ import com.furniturestore.models.entity.furniture.FurnitureFactory;
 import com.furniturestore.models.entity.furniture.PersonalizedFurniture;
 import com.furniturestore.models.entity.furniture.TraditionalFurniture;
 import com.others.formsSystem.FurnitureType;
+import com.repository.DataBase;
 import com.repository.Table;
 import lombok.SneakyThrows;
 
@@ -21,10 +22,12 @@ import java.util.stream.Stream;
 
 public class FurnitureService implements IService<Furniture, FurnitureType> {
     /**
-     * El constructor recibe la conexion a la base de datos.
+     * El constructor recibe la base de datos.
      */
     private final Table saleTable;
-    public FurnitureService() {
+    private final DataBase dataBase;
+    public FurnitureService(DataBase dataBase) {
+        this.dataBase = dataBase;
         saleTable = new Table("sale", List.of("furnitureId", "type"));
     }
 
@@ -37,7 +40,7 @@ public class FurnitureService implements IService<Furniture, FurnitureType> {
      */
     @SneakyThrows
     public int getId(FurnitureType type) {
-        Connection connection = FurnitureStoreApp.getDataBase().getCONNECTION();
+        Connection connection = dataBase.getCONNECTION();
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery("SELECT id FROM " + type.getTable().table());
         int id = 0;
@@ -55,7 +58,7 @@ public class FurnitureService implements IService<Furniture, FurnitureType> {
     @Override
     public void addEntity(Furniture entity) {
         if (entity==null) return;
-        Connection connection = FurnitureStoreApp.getDataBase().getCONNECTION();
+        Connection connection = dataBase.getCONNECTION();
         boolean isTrad = entity instanceof  TraditionalFurniture;
         Table tradTable = FurnitureType.traditional.getTable();
         Table persTable = FurnitureType.personalized.getTable();
@@ -79,7 +82,7 @@ public class FurnitureService implements IService<Furniture, FurnitureType> {
     @SneakyThrows
     @Override
     public List<Furniture> getEntities() {
-        Connection connection = FurnitureStoreApp.getDataBase().getCONNECTION();
+        Connection connection = dataBase.getCONNECTION();
         Statement statement = connection.createStatement();
         return Stream.concat( getTraditionalFurniture(statement).stream(),  getPersonalizedFurniture(statement).stream() ).toList();
     }
@@ -95,7 +98,7 @@ public class FurnitureService implements IService<Furniture, FurnitureType> {
     @SneakyThrows
     @Override
     public List<Furniture> getEntities(FurnitureType type) {
-        Connection connection = FurnitureStoreApp.getDataBase().getCONNECTION();
+        Connection connection = dataBase.getCONNECTION();
         Statement statement = connection.createStatement();
         return type == FurnitureType.traditional ? getTraditionalFurniture(statement) : getPersonalizedFurniture(statement);
     }
@@ -179,7 +182,8 @@ public class FurnitureService implements IService<Furniture, FurnitureType> {
      */
     @SneakyThrows
     public void addToSale(Furniture furniture) {
-        Connection connection = FurnitureStoreApp.getDataBase().getCONNECTION();
+        Connection connection = dataBase.getCONNECTION();
+
         String type = furniture instanceof TraditionalFurniture ? "traditional" : "personalized";
         PreparedStatement preparedStatement = connection.prepareStatement(insertInto(saleTable.table(), saleTable.values()));
         preparedStatement.setInt(1, furniture.getId());
@@ -193,7 +197,8 @@ public class FurnitureService implements IService<Furniture, FurnitureType> {
      */
     @SneakyThrows
     public void clearSale() {
-        Connection connection = FurnitureStoreApp.getDataBase().getCONNECTION();
+        Connection connection = dataBase.getCONNECTION();
+
         Statement statement = connection.createStatement();
         statement.execute("TRUNCATE TABLE sale");
         statement.close();
@@ -205,7 +210,8 @@ public class FurnitureService implements IService<Furniture, FurnitureType> {
      */
     @SneakyThrows
     public List<Furniture> getSale(){
-        Connection connection = FurnitureStoreApp.getDataBase().getCONNECTION();
+        Connection connection = dataBase.getCONNECTION();
+
         Statement statement =  connection.createStatement();
         List<Furniture> sale = new ArrayList<>(),
                 traditional = getEntities(FurnitureType.traditional),
@@ -238,7 +244,8 @@ public class FurnitureService implements IService<Furniture, FurnitureType> {
      */
     @SneakyThrows
     public void remove(int idSelected, FurnitureType typeSelected) {
-        Connection connection = FurnitureStoreApp.getDataBase().getCONNECTION();
+        Connection connection = dataBase.getCONNECTION();
+
         Statement statement = connection.createStatement();
         statement.execute("DELETE FROM " + typeSelected.getTable().table() + " WHERE id = " + idSelected);
         statement.close();
@@ -250,7 +257,7 @@ public class FurnitureService implements IService<Furniture, FurnitureType> {
      */
     @SneakyThrows
     public void remove(FurnitureType type) {
-        Connection connection = FurnitureStoreApp.getDataBase().getCONNECTION();
+        Connection connection = dataBase.getCONNECTION();
         Statement statement = connection.createStatement();
         switch (type){
             case traditional -> removeTrads(statement);
@@ -291,5 +298,10 @@ public class FurnitureService implements IService<Furniture, FurnitureType> {
      */
     public int getQuantities(FurnitureType furnitureType) {
         return getEntities(furnitureType).size();
+    }
+
+    public boolean isFurnitureExists(Furniture furniture, FurnitureType type) {
+        List<Furniture> furnitures = getEntities(type);
+        return furnitures.contains(furnitures);
     }
 }

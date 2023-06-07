@@ -12,7 +12,7 @@
    </top>
    <center>
       <VBox fx:id="allContainerVBox" styleClass="vBox-container" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
-         <Label fx:id="test" />
+         <Label fx:id="feedbackLabel"/>
          <children>
             <VBox fx:id="formContainerVBox" styleClass="vBox-container" prefHeight="200.0" prefWidth="100.0">
                <children>

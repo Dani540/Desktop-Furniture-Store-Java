@@ -55,3 +55,6 @@
     -fx-alignment: center;
 }
 
+#feedbackLabel{
+    -fx-text-fill: #545454;
+}

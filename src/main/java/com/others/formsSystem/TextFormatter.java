@@ -65,8 +65,7 @@ public class TextFormatter {
      * @param limit Es el limite de caracteres.
      */
     public void stringToIntFormatter(TextField textField, int limit) {
-        textField.setTextFormatter(getStringToIntFormatter());
-        textField.setTextFormatter(getStringLimitLengthFormatter(limit));
+        textField.setTextFormatter(getStringToIntFormatter(limit));
         textField.setText("");
     }
 
@@ -99,9 +98,17 @@ public class TextFormatter {
     }
 
     private javafx.scene.control.TextFormatter<Integer> getStringToIntFormatter() {
-        return (new javafx.scene.control.TextFormatter<>(new IntegerStringConverter(), 0, change -> {
+        return (new javafx.scene.control.TextFormatter<>(change -> {
             String aux = change.getControlNewText();
             if (aux.matches("\\d*")) return change;
+            return null;
+        }));
+    }
+
+    private javafx.scene.control.TextFormatter<Integer> getStringToIntFormatter(int limit) {
+        return (new javafx.scene.control.TextFormatter<>(change -> {
+            String aux = change.getControlNewText();
+            if (aux.matches("\\d*") && aux.length() <= limit) return change;
             return null;
         }));
     }

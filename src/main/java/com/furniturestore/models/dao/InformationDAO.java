@@ -15,8 +15,8 @@ public class InformationDAO {
 
         info.put("User", FurnitureStoreApp.getUsername());
         info.put("Range", FurnitureStoreApp.getUserType().name());
-        info.put("Traditional furniture registered", String.valueOf(dataBase.getFurnitureQuatity(FurnitureType.traditional)));
-        info.put("Personalized furniture registered", String.valueOf(dataBase.getFurnitureQuatity(FurnitureType.personalized)));
+        info.put("Traditional furniture registered", String.valueOf(dataBase.getFurnitureQuantity(FurnitureType.traditional)));
+        info.put("Personalized furniture registered", String.valueOf(dataBase.getFurnitureQuantity(FurnitureType.personalized)));
         info.put("Date", dataBase.getDate());
 
         return info;
