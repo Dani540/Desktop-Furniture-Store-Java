@@ -28,7 +28,7 @@ public class UserService implements IService<User, UserType>{
     }
 
     /**
-     * Comprueba si el usuario ingresado existe en la base de datos.
+     * Comprueba el estado de un usuario en la base de datos.
      * Retorna el estado, 1 para un usuario completo y 2 para una contraseña incorrecta.
      * @param user Es el usuario ingresado.
      * @return Devuelve 1 o 2 en funcion de si existe y sus datos estan correctos, devuelve 0 si no existe.
@@ -126,11 +126,18 @@ public class UserService implements IService<User, UserType>{
         return list;
     }
 
+    /**
+     * un-use
+     */
     @Override
     public List<User> getEntities(UserType type) {
         return null;
     }
 
+    /**
+     * Remueve un usuario de la base de datos.
+     * @param user Es el usuario a remover.
+     */
     @SneakyThrows
     public void removeUser(User user) {
         Connection connection = dataBase.getCONNECTION();
@@ -139,6 +146,11 @@ public class UserService implements IService<User, UserType>{
         statement.close();
     }
 
+    /**
+     * Obtiene un usuario de la base de datos.
+     * @param user Es el usuario a obtener.
+     * @return Devuelve el usuario.
+     */
     @SneakyThrows
     public User getUser(User user) {
         Connection connection = null;

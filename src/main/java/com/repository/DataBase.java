@@ -77,7 +77,7 @@ public class DataBase {
      * Usa la instancia userService para esto.
      * @param user Es el usuario a introducir.
      */
-    public void setUser(User user){
+    public void addUser(User user){
         userService.addEntity(user);
     }
 
@@ -281,5 +281,9 @@ public class DataBase {
 
     public boolean isFurnitureExists(Furniture furniture, FurnitureType type) {
         return furnitureService.isFurnitureExists(furniture, type);
+    }
+
+    public List<Client> getClient() {
+        return clientServices.getEntities();
     }
 }

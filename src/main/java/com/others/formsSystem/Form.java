@@ -15,6 +15,7 @@ import java.util.stream.IntStream;
 public abstract class Form implements IForm {
     @Getter
     private DAO dao;
+    @Getter
     private Label incompleteLabel;
     private EnumType enumType;
     private Node[] data;

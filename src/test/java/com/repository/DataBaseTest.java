@@ -8,8 +8,6 @@ import com.others.formsSystem.FurnitureType;
 import com.others.formsSystem.UserType;
 import org.junit.jupiter.api.*;
 
-import java.util.stream.Collectors;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class DataBaseTest {
@@ -27,15 +25,13 @@ class DataBaseTest {
         client = new Client(99999999);
 
         dataBase.setUserType(UserType.vendor);
-        if ( !dataBase.isUserExists(user) ) {
-            dataBase.setUser(user);
-        }
 
+        if ( !dataBase.isUserExists(user) )
+            dataBase.addUser(user);
         if (!dataBase.isFurnitureExists(furniture, FurnitureType.traditional))
             dataBase.addFurniture(furniture);
-        if (!dataBase.isClientExists(client)){
+        if (!dataBase.isClientExists(client))
             dataBase.addClient(client);
-        }
     }
     @BeforeEach
     void setUp() {
@@ -84,14 +80,12 @@ class DataBaseTest {
     }
 
     @Test
-    void addToSale() {
-    }
-
-    @Test
     void addClient() {
+        assertNotNull(dataBase.getClientInfo(client));
     }
 
     @Test
     void isClientExists() {
+        assertEquals(1,dataBase.getClient().stream().filter(n -> n.getRut()==client.getRut()).toList().size());
     }
 }
