@@ -10,6 +10,7 @@ import com.furniturestore.controllers.SceneController;
 import com.furniturestore.models.entity.users.User;
 import com.others.formsSystem.UserType;
 import com.others.sceneSystem.Scenes;
+import com.repository.DataBase;
 
 public class LoginDAO {
 
@@ -50,7 +51,7 @@ public class LoginDAO {
 
         UserType userType = getUser(userData).getUserType();
 
-        int state = (FurnitureStoreApp.getDataBase().stateOfUser( getUser(userData) ));
+        int state = (DataBase.getInstance().getRepository().stateOfUser( getUser(userData) ));
 
         if ( state==1 ) {
             System.out.println("Type of user logged: " + userType);
@@ -71,9 +72,9 @@ public class LoginDAO {
      * @param username Es el nombre de usuario ingresado.
      */
     private void setUserType(String username) {
-        if ( isRoot(username) )       FurnitureStoreApp.getDataBase().setUserType(UserType.root);
-        else if ( isAdmin(username) ) FurnitureStoreApp.getDataBase().setUserType(UserType.admin);
-        else FurnitureStoreApp.getDataBase().setUserType(UserType.vendor);
+        if ( isRoot(username) )       DataBase.getInstance().getRepository().setUserType(UserType.root);
+        else if ( isAdmin(username) ) DataBase.getInstance().getRepository().setUserType(UserType.admin);
+        else DataBase.getInstance().getRepository().setUserType(UserType.vendor);
     }
 
     /**
@@ -100,7 +101,7 @@ public class LoginDAO {
      * @return devuelve un usuario con estos datos.
      */
     private User getUser(String[] userData) {
-        UserType userType = FurnitureStoreApp.getDataBase().getUserType(userData);
+        UserType userType = DataBase.getInstance().getRepository().getUserType(userData);
         return new User(userData[0].substring(userType.getBeginIndex()), userData[1], userType);
     }
 }

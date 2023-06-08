@@ -141,4 +141,7 @@
     -fx-font-size: 9;
 }
 
-
+#ticketTotalContainerVBox{
+    -fx-alignment: center;
+    -fx-font-size: 11;
+}

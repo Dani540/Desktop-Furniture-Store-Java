@@ -44,8 +44,7 @@ public class TextFormatter {
      * @param limit Es el limite de caracteres.
      */
     public void stringToDoubleFormatter(TextField textField, int limit){
-        textField.setTextFormatter( getStringToDoubleFormatter() );
-        textField.setTextFormatter( getStringLimitLengthFormatter(limit) );
+        textField.setTextFormatter( getStringToDoubleFormatter(limit) );
         textField.setText("");
 
     }
@@ -93,6 +92,14 @@ public class TextFormatter {
         return new javafx.scene.control.TextFormatter<>(new DoubleStringConverter(), 0.0, change -> {
             String aux = change.getControlNewText();
             if (aux.matches("^\\d*(\\.\\d*)?$")) return change;
+            return null;
+        });
+    }
+
+    private javafx.scene.control.TextFormatter<Double> getStringToDoubleFormatter(int limit) {
+        return new javafx.scene.control.TextFormatter<>(new DoubleStringConverter(), 0.0, change -> {
+            String aux = change.getControlNewText();
+            if (aux.matches("^\\d*(\\.\\d*)?$") && aux.length()<=limit) return change;
             return null;
         });
     }

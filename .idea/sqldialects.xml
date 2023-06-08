@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="SqlDialectMappings">
-    <file url="file://$PROJECT_DIR$/src/main/java/com/repository/DataBase.java" dialect="MySQL" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/services/ClientServices.java" dialect="MariaDB" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/repository/Repository.java" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/services/ClientService.java" dialect="MariaDB" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/services/FurnitureService.java" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/services/UserService.java" dialect="MariaDB" />
   </component>

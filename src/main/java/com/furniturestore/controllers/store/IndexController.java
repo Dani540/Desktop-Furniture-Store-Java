@@ -6,6 +6,7 @@ package com.furniturestore.controllers.store;
 
 import com.furniturestore.FurnitureStoreApp;
 import com.furniturestore.views.IndexView;
+import com.repository.DataBase;
 import javafx.fxml.FXML;
 
 public class IndexController{
@@ -16,7 +17,7 @@ public class IndexController{
     }
 
     public void initialize(){
-        FurnitureStoreApp.getDataBase().clearSale();
+        DataBase.getInstance().getRepository().clearSale();
     }
 
     /**

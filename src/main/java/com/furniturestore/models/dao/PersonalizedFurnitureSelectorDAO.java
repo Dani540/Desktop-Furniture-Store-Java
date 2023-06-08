@@ -4,23 +4,24 @@ import com.furniturestore.FurnitureStoreApp;
 import com.furniturestore.models.entity.furniture.Furniture;
 import com.others.formsSystem.FurnitureType;
 import com.repository.DataBase;
+import com.repository.Repository;
 
 import java.util.List;
 
 public class PersonalizedFurnitureSelectorDAO {
-    private final DataBase dataBase;
+    private final Repository repository;
 
     public PersonalizedFurnitureSelectorDAO() {
-        dataBase = FurnitureStoreApp.getDataBase();
+        repository = DataBase.getInstance().getRepository();
     }
     public List<Furniture> loadPersonalizeds() {
-        return dataBase.getFurniture(FurnitureType.personalized);
+        return repository.getFurniture(FurnitureType.personalized);
     }
     public void addToSale(List<Furniture> selectedFurniture) {
-        dataBase.addToSale(selectedFurniture);
+        repository.addToSale(selectedFurniture);
     }
 
     public void addToSale(Furniture furniture) {
-        dataBase.addToSale(furniture);
+        repository.addToSale(furniture);
     }
 }

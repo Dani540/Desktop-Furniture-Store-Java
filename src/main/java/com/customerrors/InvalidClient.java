@@ -13,5 +13,4 @@ public class InvalidClient extends RuntimeException {
         }
         return aux;
     }
-
 }

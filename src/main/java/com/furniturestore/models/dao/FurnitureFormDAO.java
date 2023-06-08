@@ -10,6 +10,7 @@ import com.furniturestore.models.entity.Entity;
 import com.furniturestore.models.entity.furniture.Furniture;
 import com.others.formsSystem.EnumType;
 import com.others.formsSystem.FurnitureType;
+import com.repository.DataBase;
 import javafx.scene.Node;
 
 public class FurnitureFormDAO extends DAO{
@@ -20,7 +21,7 @@ public class FurnitureFormDAO extends DAO{
      */
     @Override
     public void addEntity(Entity entity) {
-        FurnitureStoreApp.getDataBase().addFurniture( (Furniture) entity);
+        DataBase.getInstance().getRepository().addFurniture( (Furniture) entity);
     }
     /**
      * Busca un identificador unico valido para cada tipo de mueble.
@@ -29,7 +30,7 @@ public class FurnitureFormDAO extends DAO{
      */
     @Override
     public int getId(EnumType type) {
-        return FurnitureStoreApp.getDataBase().getFurnitureId( (FurnitureType) type);
+        return DataBase.getInstance().getRepository().getFurnitureId( (FurnitureType) type);
     }
 
     /**

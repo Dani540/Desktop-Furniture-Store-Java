@@ -11,6 +11,8 @@ import javafx.scene.layout.VBox;
 
 public class TicketViewController {
     @FXML
+    private VBox ticketTotalContainerVBox;
+    @FXML
     private VBox ticketClientContainerVboxLeft;
     @FXML
     private VBox ticketClientContainerVboxRight;
@@ -28,6 +30,7 @@ public class TicketViewController {
         ticketView.loadDate(dateLabel);
         ticketView.loadClient(ticketClientContainerVboxLeft, ticketClientContainerVboxRight);
         ticketView.loadSale(ticketDataQualitiesContainerHBox);
+        ticketView.loadTotal(ticketTotalContainerVBox);
     }
 
     @FXML
@@ -37,7 +40,7 @@ public class TicketViewController {
 
     @FXML
     private void onAcceptButton() {
-        SceneController.switchScene(Scenes.index);
+        ticketView.onAcceptButton();
     }
 
     @FXML

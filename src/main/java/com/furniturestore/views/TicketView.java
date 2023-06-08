@@ -1,9 +1,11 @@
 package com.furniturestore.views;
 
 import com.furniturestore.FurnitureStoreApp;
+import com.furniturestore.controllers.SceneController;
 import com.furniturestore.models.dao.TicketDAO;
 import com.furniturestore.models.entity.furniture.Furniture;
 import com.others.RClient;
+import com.others.sceneSystem.Scenes;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -21,20 +23,6 @@ public class TicketView {
         dateLabel.setText(ticketDAO.getDate());
     }
 
-    public void loadClient(VBox ticketClientContainerVboxLeft, VBox ticketClientContainerVboxRight){
-        RClient rClient = FurnitureStoreApp.getRClient();
-        ticketClientContainerVboxLeft.getChildren().add(new Label("Rut: "));
-        ticketClientContainerVboxRight.getChildren().add(new Label(rClient.getRut()));
-        if (!rClient.getName().isEmpty()) {
-            ticketClientContainerVboxLeft.getChildren().add(new Label("Name: "));
-            ticketClientContainerVboxRight.getChildren().add(new Label(rClient.getName()));
-        }
-        if (!rClient.getLastname().isEmpty()) {
-            ticketClientContainerVboxLeft.getChildren().add(new Label("Lastname: "));
-            ticketClientContainerVboxRight.getChildren().add(new Label(rClient.getLastname()));
-        }
-    }
-
     public void loadSale(HBox ticketDataQualitiesContainerHBox) {
         List<VBox> vBoxes = ticketDataQualitiesContainerHBox.getChildren().stream().map(n -> (VBox) n).toList();
         List<Furniture> furnitures = ticketDAO.loadSale();
@@ -49,5 +37,30 @@ public class TicketView {
                 }
             });
         });
+    }
+
+    public void loadTotal(VBox ticketTotalContainerVBox){
+        List<Furniture> furnitures = ticketDAO.loadSale();
+        double total = furnitures.stream().mapToDouble(Furniture::getPrice).sum();
+        ticketTotalContainerVBox.getChildren().add(new Label("Total: $" + total));
+    }
+
+    public void loadClient(VBox ticketClientContainerVboxLeft, VBox ticketClientContainerVboxRight){
+        RClient rClient = FurnitureStoreApp.getRClient();
+        ticketClientContainerVboxLeft.getChildren().add(new Label("Rut: "));
+        ticketClientContainerVboxRight.getChildren().add(new Label(rClient.getRut()));
+        if (!rClient.getName().isEmpty()) {
+            ticketClientContainerVboxLeft.getChildren().add(new Label("Name: "));
+            ticketClientContainerVboxRight.getChildren().add(new Label(rClient.getName()));
+        }
+        if (!rClient.getLastname().isEmpty()) {
+            ticketClientContainerVboxLeft.getChildren().add(new Label("Lastname: "));
+            ticketClientContainerVboxRight.getChildren().add(new Label(rClient.getLastname()));
+        }
+    }
+
+    public void onAcceptButton() {
+        ticketDAO.addTicket();
+        SceneController.switchScene(Scenes.index);
     }
 }

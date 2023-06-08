@@ -4,13 +4,13 @@
 
 package com.services;
 
-import com.furniturestore.FurnitureStoreApp;
 import com.furniturestore.models.entity.furniture.Furniture;
 import com.furniturestore.models.entity.furniture.FurnitureFactory;
 import com.furniturestore.models.entity.furniture.PersonalizedFurniture;
 import com.furniturestore.models.entity.furniture.TraditionalFurniture;
 import com.others.formsSystem.FurnitureType;
 import com.repository.DataBase;
+import com.repository.Repository;
 import com.repository.Table;
 import lombok.SneakyThrows;
 
@@ -206,7 +206,7 @@ public class FurnitureService implements IService<Furniture, FurnitureType> {
 
     /**
      * Obtiene la actual venta.
-     * @return
+     * @return Devuelve un lista de instacias Furniture con los muebles para la venta.
      */
     @SneakyThrows
     public List<Furniture> getSale(){
@@ -300,7 +300,7 @@ public class FurnitureService implements IService<Furniture, FurnitureType> {
         return getEntities(furnitureType).size();
     }
 
-    public boolean isFurnitureExists(Furniture furniture, FurnitureType type) {
+    public boolean isFurnitureExists(FurnitureType type) {
         List<Furniture> furnitures = getEntities(type);
         return furnitures.contains(furnitures);
     }

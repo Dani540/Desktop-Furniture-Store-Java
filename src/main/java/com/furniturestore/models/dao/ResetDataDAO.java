@@ -2,20 +2,21 @@ package com.furniturestore.models.dao;
 
 import com.furniturestore.FurnitureStoreApp;
 import com.repository.DataBase;
+import com.repository.Repository;
 
 public class ResetDataDAO {
 
-    private final DataBase dataBase = FurnitureStoreApp.getDataBase();
+    private final Repository repository = DataBase.getInstance().getRepository();
 
     public void removeAll() {
-        dataBase.removeAllFurniture();
+        repository.removeAllFurniture();
     }
 
     public void removeTrad() {
-        dataBase.removeTradFurniture();
+        repository.removeTradFurniture();
     }
 
     public void removePer() {
-        dataBase.removePerFurniture();
+        repository.removePerFurniture();
     }
 }

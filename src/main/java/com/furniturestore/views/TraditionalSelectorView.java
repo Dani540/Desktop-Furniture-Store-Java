@@ -64,6 +64,12 @@ public class TraditionalSelectorView extends FurnitureILister {
         return Stream.generate(CheckBox::new).limit(amount).toList();
     }
 
+    /**
+     * Carga la informacion de los muebles en funcion de si esta seleccionado o no el checkbox correspondiente
+     * al indice del boton en lista y lo añade a la venta.
+     * @param checkBoxes Son los CheckBoxes para seleccionar muebles
+     * @param traditionalFurnitures Son los muebles tradicionales en el sistema.
+     */
     private void setCheckListener(List<CheckBox> checkBoxes, List<Furniture> traditionalFurnitures) {
         IntStream.range( 0,traditionalFurnitures.size() ).forEach(i ->{
             checkBoxes.get(i).selectedProperty().addListener( (obs, des, sel) ->{

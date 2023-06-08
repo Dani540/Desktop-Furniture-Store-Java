@@ -3,20 +3,17 @@ package com.furniturestore;
 import com.furniturestore.controllers.SceneController;
 import com.others.RClient;
 import com.others.formsSystem.UserType;
-import com.repository.DataBase;
+import com.repository.Repository;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.io.IOException;
-
 import static com.others.sceneSystem.Scenes.login;
 
 public class FurnitureStoreApp extends Application {
-    @Getter
-    private static DataBase dataBase;
+
     @Setter @Getter
     private static UserType userType;
     @Setter @Getter
@@ -28,7 +25,6 @@ public class FurnitureStoreApp extends Application {
         stage.setResizable(false);
         stage.initStyle(StageStyle.TRANSPARENT);
         SceneController.setStage(stage);
-        dataBase = new DataBase();
         SceneController.switchScene(login);
 
     }

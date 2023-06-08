@@ -4,7 +4,7 @@ import com.furniturestore.FurnitureStoreApp;
 import com.furniturestore.models.dao.UserFormDAO;
 import com.others.formsSystem.TextFormatter;
 import com.others.formsSystem.UserType;
-import javafx.fxml.FXML;
+import com.repository.DataBase;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -28,7 +28,7 @@ public class UserFormView {
         if (!username.isBlank()){
             if (!password.isBlank()){
                 if (userType!=null) {
-                    FurnitureStoreApp.getDataBase().setUserType(userType);
+                    DataBase.getInstance().getRepository().setUserType(userType);
                     userFormDao.setUser(username, password, userType);
                     feedBackLabel.setText("User added success!");
                     cleanForm();

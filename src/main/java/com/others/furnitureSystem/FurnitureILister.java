@@ -5,6 +5,7 @@ import com.furniturestore.models.dao.PersonalizedFurnitureSelectorDAO;
 import com.furniturestore.models.dao.TraditionalSelectorDAO;
 import com.furniturestore.models.entity.furniture.Furniture;
 import com.others.formsSystem.FurnitureType;
+import com.repository.DataBase;
 import javafx.scene.control.Label;
 
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ public abstract class FurnitureILister implements ILister<Furniture, Label, Furn
      */
     @Override
     public List<Furniture> loadEntities() {
-        return FurnitureStoreApp.getDataBase().getFurniture();
+        return DataBase.getInstance().getRepository().getFurniture();
     }
     /**
      * Carga la lista de muebles segun su tipo usando la instancia DAO correspondiente.

@@ -9,7 +9,9 @@ import com.furniturestore.FurnitureStoreApp;
 import com.furniturestore.models.entity.users.Client;
 import com.others.formsSystem.UserType;
 import com.repository.DataBase;
+import com.repository.Repository;
 import com.repository.Table;
+import lombok.Data;
 import lombok.SneakyThrows;
 
 import java.sql.Connection;
@@ -20,11 +22,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class ClientServices implements IService<Client, UserType> {
+public class ClientService implements IService<Client, UserType> {
 
     private final DataBase dataBase;
 
-    public ClientServices(DataBase dataBase) {
+    public ClientService(DataBase dataBase) {
         this.dataBase = dataBase;
     }
 
@@ -115,7 +117,7 @@ public class ClientServices implements IService<Client, UserType> {
         List<String> infoList = new ArrayList<>();
 
         String query = "SELECT * FROM " + UserType.client.getTable().table() + " WHERE rut = ?";
-        PreparedStatement preparedStatement = FurnitureStoreApp.getDataBase().getCONNECTION().prepareStatement(query);
+        PreparedStatement preparedStatement = dataBase.getCONNECTION().prepareStatement(query);
         preparedStatement.setInt(1, client.getRut());
         ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -143,7 +145,7 @@ public class ClientServices implements IService<Client, UserType> {
     @SneakyThrows
     public boolean exists(Client client) {
         String query = "SELECT * FROM " + UserType.client.getTable().table() + " WHERE rut = ?";
-        PreparedStatement preparedStatement = FurnitureStoreApp.getDataBase().getCONNECTION().prepareStatement(query);
+        PreparedStatement preparedStatement = dataBase.getCONNECTION().prepareStatement(query);
         preparedStatement.setInt(1, client.getRut());
         ResultSet resultSet = preparedStatement.executeQuery();
 

@@ -76,6 +76,7 @@
                         </HBox>
                      </ScrollPane>
                   </VBox>
+                  <VBox fx:id="ticketTotalContainerVBox" />
                   <HBox fx:id="ticketClientContainerHBox" prefHeight="100.0" prefWidth="200.0">
                      <children>
                         <VBox fx:id="ticketClientContainerVboxLeft" prefHeight="200.0" prefWidth="100.0" />

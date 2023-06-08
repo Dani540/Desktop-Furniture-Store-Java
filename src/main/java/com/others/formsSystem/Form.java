@@ -102,10 +102,12 @@ public abstract class Form implements IForm {
     public int getEntityId() {
         return dao.getId(enumType);
     }
+
     /**
      * Valida los campos del formulario.
      * @param fields Son los campos de los datos.
-     * @return Devuelve una lista de booleanos, donde cada indice es el campo correspondiente. (Para el primer elemento es el primer campo del formulario, etc...)
+     * @return Devuelve una lista de booleanos, donde cada indice es el campo correspondiente.
+     * (Para el primer elemento es el primer campo del formulario, etc...)
      */
     @Override
     public List<Boolean> validateFields(Node... fields) {
@@ -128,6 +130,11 @@ public abstract class Form implements IForm {
         return validField;
     }
 
+    /**
+     * Obtiene el texto para campo no valido segun su id.
+     * @param id Es el id del campo
+     * @return Devuele un String con el texto que se defina dentro del metodo.
+     */
     @Override
     public abstract String getNoFieldValidString(int id);
 

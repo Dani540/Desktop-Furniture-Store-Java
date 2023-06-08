@@ -37,9 +37,7 @@ public class ClientForm extends Form {
      */
     @Override
     public void addButton() {
-
         TextField rutTextField = (TextField) getData()[0];
-
         try {
             if (isValidField(rutTextField) && rutTextField.getText().length() == 8) {    // Si el campo de rut esta llenado con 8 digitos.
                 if (clientFormDAO.isClientExists(getData())) {   // Si el cliente existe en la base de datos
@@ -67,7 +65,6 @@ public class ClientForm extends Form {
         }catch (InvalidClient e){
             System.out.println(e);
         }
-
     }
 
     /**

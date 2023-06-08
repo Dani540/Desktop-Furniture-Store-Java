@@ -8,6 +8,7 @@ import com.customerrors.InvalidUser;
 import com.furniturestore.models.entity.users.User;
 import com.others.formsSystem.UserType;
 import com.repository.DataBase;
+import com.repository.Repository;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.SneakyThrows;

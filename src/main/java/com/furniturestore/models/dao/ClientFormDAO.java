@@ -4,7 +4,7 @@ import com.furniturestore.FurnitureStoreApp;
 import com.furniturestore.models.entity.users.Client;
 import com.furniturestore.models.entity.Entity;
 import com.others.formsSystem.EnumType;
-import com.others.formsSystem.UserType;
+import com.repository.DataBase;
 import javafx.scene.Node;
 import javafx.scene.control.TextField;
 
@@ -14,7 +14,7 @@ public class ClientFormDAO extends DAO {
 
     @Override
     public void addEntity(Entity entity) {
-        FurnitureStoreApp.getDataBase().addClient( (Client) entity);
+        DataBase.getInstance().getRepository().addClient( (Client) entity);
     }
 
     /**
@@ -40,7 +40,7 @@ public class ClientFormDAO extends DAO {
      */
     public List<String> getInstanceInfo(Node[] data){
         int rut = Integer.parseInt(((TextField) data[0]).getText());
-        return FurnitureStoreApp.getDataBase().getClientInfo(new Client(rut));
+        return DataBase.getInstance().getRepository().getClientInfo(new Client(rut));
     }
 
     /**
@@ -58,6 +58,6 @@ public class ClientFormDAO extends DAO {
         }catch (RuntimeException e){
             client = new Client(rut);
         }
-        return FurnitureStoreApp.getDataBase().isClientExists(client);
+        return DataBase.getInstance().getRepository().isClientExists(client);
     }
 }
